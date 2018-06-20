@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>modal-example</title>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="modal.js"></script>
+  <script type="text/javascript">
+  </script>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    body.modal-open {
+      position: fixed;
+      width: 100%;
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      font-size: 14px;
+    }
+
+    .modal-frame {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+    }
+
+    .modal-content-warp {
+      padding: 10px;
+      height: 100px;
+      overflow-y: auto;
+    }
+
+    .content-position-middle {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .modal-frame-middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+  <script>
+  </script>
+</head>
+
+<body>
+
+  <h4>Modal开发注意事项</h4>
+  <p>
+    1.PC端直接设置Html的overflow:hidden即可（注意点：当设置overflow:hidden的时候，右边的滚动条会消失，会出现闪动的情况）
+  </p>
+  <p>
+    2.移动端设置html,body的overflow:hidden，但是dialog的滚动还是会穿透
+  </p>
+  <p>
+    3.移动端设置touchmove的preventDefault，这样会导致dialog的touchmove也无效
+  </p>
+  <p>
+    4.设置body为fixed，需要用js来还原当前滚动位置
+  </p>
+
+  <a href="javascript:void(0)" onclick="testOpenModal('modal');">打开第一个Modal</a>
+  <a href="javascript:void(0)" onclick="testOpenModal('modal2')">打开第二个Modal</a>
+
+  <div style="height:2000px;width:100%;background:lightcyan;line-height:2000px;">占位符</div>
+
+  <div id="modal" style="display:none;" class="modal">
+    <div class="modal-frame">
+      <div class="modal-content-warp">
+        <li>内容可以滚动1</li>
+        <li>内容可以滚动2</li>
+        <li>内容可以滚动3</li>
+        <li>内容可以滚动4</li>
+        <li>内容可以滚动5</li>
+        <li>内容可以滚动6</li>
+        <li>内容可以滚动7</li>
+        <li>内容可以滚动8</li>
+        <li>内容可以滚动9</li>
+        <li>内容可以滚动10</li>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal2" style="display:none;" class="modal">
+    <div class="modal-frame">
+      <div class="modal-content-warp">
+        <li>内容可以滚动2</li>
+        <li>内容可以滚动3</li>
+        <li>内容可以滚动4</li>
+        <li>内容可以滚动5</li>
+        <li>内容可以滚动6</li>
+        <li>内容可以滚动7</li>
+        <li>内容可以滚动8</li>
+        <li>内容可以滚动9</li>
+        <li>内容可以滚动10</li>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  function testOpenModal(id) {
+    var s = ModalHelper.init(id);
+    s.open();
+  }
+</script>
+
+</html>
