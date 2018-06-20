@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>modal-example</title>
-  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
   <script src="modal.js"></script>
   <script type="text/javascript">
   </script>
@@ -32,7 +32,13 @@
       font-size: 14px;
     }
 
-    .modal-frame {
+    .modal-content-warp {
+      padding: 10px;
+      height: 100px;
+      overflow-y: auto;
+    }
+
+    .modal-frame-bottom {
       position: absolute;
       left: 0;
       bottom: 0;
@@ -40,25 +46,25 @@
       background: #fff;
     }
 
-    .modal-content-warp {
-      padding: 10px;
-      height: 100px;
-      overflow-y: auto;
-    }
-
-    .content-position-middle {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
     .modal-frame-middle {
+      background: #fff;
+      width: 80%;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+    }
+
+    .modal-frame-full {
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
     }
   </style>
   <script>
@@ -81,13 +87,18 @@
     4.设置body为fixed，需要用js来还原当前滚动位置
   </p>
 
-  <a href="javascript:void(0)" onclick="testOpenModal('modal');">打开第一个Modal</a>
-  <a href="javascript:void(0)" onclick="testOpenModal('modal2')">打开第二个Modal</a>
+  <h4>样例</h4>
+  <a href="javascript:void(0)" onclick="testOpenModal('modalBottom');">打开底部Modal</a>
+  </br>
+  <a href="javascript:void(0)" onclick="testOpenModal('modalMiddle')">打开中间Modal</a>
+  </br>
+  <a href="javascript:void(0)" onclick="testOpenModal('modalFull')">打开全屏Modal</a>
+  </br>
 
   <div style="height:2000px;width:100%;background:lightcyan;line-height:2000px;">占位符</div>
 
-  <div id="modal" style="display:none;" class="modal">
-    <div class="modal-frame">
+  <div id="modalBottom" style="display:none;" class="modal">
+    <div class="modal-frame-bottom">
       <div class="modal-content-warp">
         <li>内容可以滚动1</li>
         <li>内容可以滚动2</li>
@@ -103,18 +114,20 @@
     </div>
   </div>
 
-  <div id="modal2" style="display:none;" class="modal">
-    <div class="modal-frame">
+  <div id="modalMiddle" style="display:none;" class="modal">
+    <div class="modal-frame-middle">
       <div class="modal-content-warp">
-        <li>内容可以滚动2</li>
-        <li>内容可以滚动3</li>
-        <li>内容可以滚动4</li>
-        <li>内容可以滚动5</li>
-        <li>内容可以滚动6</li>
-        <li>内容可以滚动7</li>
-        <li>内容可以滚动8</li>
-        <li>内容可以滚动9</li>
-        <li>内容可以滚动10</li>
+        提示消息</br>
+        loading....
+      </div>
+    </div>
+  </div>
+
+  <div id="modalFull" style="display:none;" class="modal">
+    <div class="modal-frame-full">
+      <div class="modal-content-warp">
+        全文信息
+        <span style="float:right;" onclick="testCloseModal('modalFull')">关闭</span>
       </div>
     </div>
   </div>
@@ -124,6 +137,11 @@
   function testOpenModal(id) {
     var s = ModalHelper.init(id);
     s.open();
+  }
+
+  function testCloseModal(id) {
+    var s = ModalHelper.init(id);
+    s.close();
   }
 </script>
 

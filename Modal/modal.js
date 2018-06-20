@@ -39,10 +39,13 @@
       document.body.classList.remove(this.bodyCls);
       document.scrollingElement.scrollTop = this.scrollTop;
     },
+    // 单击背景时自动关闭
     bindBgClose: function () {
       var _that = this;
-      $(_that.id).addEventListener("click", function () {
-        _that.close();
+      $(_that.id).addEventListener("click", function (e) {
+        if (e.target.id === _that.id) {
+          _that.close();
+        }
       });
     }
   };
