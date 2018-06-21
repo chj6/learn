@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>modal-example</title>
-  <!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
   <script src="modal.js"></script>
   <script type="text/javascript">
   </script>
@@ -72,7 +71,6 @@
 </head>
 
 <body>
-
   <h4>Modal开发注意事项</h4>
   <p>
     1.PC端直接设置Html的overflow:hidden即可（注意点：当设置overflow:hidden的时候，右边的滚动条会消失，会出现闪动的情况）
@@ -86,15 +84,21 @@
   <p>
     4.设置body为fixed，需要用js来还原当前滚动位置
   </p>
+  <span style="font-size:12px;">
+    Bootstrap的modal允许滚动穿透，但是在关闭modal之后会对背景位置进行还原。</br>
+    链接：
+    <a href="https://github.com/twbs/bootstrap/blob/v4-dev/js/src/modal.js" target="_blank">Bootstrap-Modal</a>（2018-6-21）
+  </span>
 
   <h4>样例</h4>
-  <a href="javascript:void(0)" onclick="testOpenModal('modalBottom');">打开底部Modal</a>
-  </br>
-  <a href="javascript:void(0)" onclick="testOpenModal('modalMiddle')">打开中间Modal</a>
-  </br>
-  <a href="javascript:void(0)" onclick="testOpenModal('modalFull')">打开全屏Modal</a>
-  </br>
-
+  <div style="line-height:35px;">
+    <a href="javascript:void(0)" onclick="testOpenModal('modalBottom');">打开底部Modal</a>
+    </br>
+    <a href="javascript:void(0)" onclick="testOpenModal('modalMiddle')">打开中间Modal</a>
+    </br>
+    <a href="javascript:void(0)" onclick="testOpenModal('modalFull')">打开全屏Modal</a>
+    </br>
+  </div>
   <div style="height:2000px;width:100%;background:lightcyan;line-height:2000px;">占位符</div>
 
   <div id="modalBottom" style="display:none;" class="modal">
