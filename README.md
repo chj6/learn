@@ -1,6 +1,6 @@
 # 组件记录
 
-  http://chj6.com
+  Demo地址：http://chj6.com
 
 - [模态框组件](/Modal/example.html)
 
