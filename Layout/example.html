@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>常用布局</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    p{
+      margin:10px 0;
+    }
+
+    .tips {
+      font-size: 12px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="font-weight: bold;" class="section">
+    区别：
+    <p>float布局：将元素脱离文档流，后面的元素会填充当前元素的位置，但是不会影响下一个元素的位置，只会影响下一个元素中的文字显示；</p>
+    <p>position布局：将元素脱离文档流，后面的元素会填充当前元素的位置，但是不会影响下一个元素中的文字显示，会直接将文字覆盖掉；</p>
+  </div>
+  <div class="section">
+    <p>左右布局：float布局
+      <span class="tips">右边的高度大于左边的高度时，左边的高度无法自动根据右边的高度撑开，除非同时设置父元素和左边元素的height100%</span>
+    </p>
+    <div>
+      <div style="background:red;width:200px;float:left;">左边</div>
+      <div style="background:blue;margin-left:200px;height:200px;">右边</div>
+    </div>
+  </div>
+  <div class="section">
+    <p>左右布局：position布局
+      <span class="tips">左边的div可以自动根据右边的高度撑开；</span>
+    </p>
+    <div style="position:relative;">
+      <div style="background:red;width:200px;position:absolute;height:100%;">左边</div>
+      <div style="background:blue;margin-left:200px;height:200px;">右边</div>
+    </div>
+  </div>
+  <div class="section">
+    <p>左中右布局：float布局
+      <span style="font-size:12px;">整体高度必须小于3000px</span>
+    </p>
+    <div style="overflow:hidden;">
+      <div style="float:left;width:10%;background:red;margin-bottom:-3000px;padding-bottom:3000px;">左边</div>
+      <div style="float:right;width:10%;background:blue;margin-bottom:-3000px;padding-bottom:3000px;">右边</div>
+      <div style="background:yellow;height:200px;margin:0 10%;">中间</div>
+    </div>
+  </div>
+</body>
+
+</html>
