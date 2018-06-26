@@ -1,6 +1,6 @@
 # Learn
 
-  Demo地址：http://chj6.com
+  Demo：http://chj6.com
 
 - 组件
   - [模态框组件](/components/Modal/example.html)
@@ -11,3 +11,5 @@
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
+
+- [链接地址](/links/links.md)
