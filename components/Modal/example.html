@@ -65,6 +65,47 @@
       bottom: 0;
       right: 0;
     }
+
+    /* 参照lulu的loading组件：https://github.com/yued-fe/lulu */
+    .loading {
+      position: relative;
+    }
+
+    .loading-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: url(images/loading-blue.gif);
+      /* IE10+ */
+      background: url(images/loading-blue.png), linear-gradient(transparent, transparent);
+      -webkit-animation: spin 1s linear infinite;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading>.loading-icon {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    @-webkit-keyframes spin {
+      from {
+        -webkit-transform: rotate(0);
+      }
+      to {
+        -webkit-transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0)
+      }
+      to {
+        transform: rotate(-360deg)
+      }
+    }
   </style>
   <script>
   </script>
@@ -73,7 +114,7 @@
 <body>
   <h4>Modal开发注意事项1</h4>
   <p>
-    1.PC端直接设置Html的overflow:hidden即可（注意点：当设置overflow:hidden的时候，右边的滚动条会消失，会出现闪动的情况）
+    1.PC端直接设置Html的overflow:hidden即可（注意点：当设置overflow:hidden的时候，右边的滚动条会消失，会出现闪动的情况，可以通过设置body的border-right:solid 17px transparent，然后取消dialog的时候再去除掉border-right）
   </p>
   <p>
     2.移动端设置html,body的overflow:hidden，但是dialog的滚动还是会穿透
@@ -98,6 +139,8 @@
     </br>
     <a href="javascript:void(0)" onclick="testOpenModal('modalFull')">打开全屏Modal</a>
     </br>
+    <a href="javascript:void(0)" onclick="testOpenModal('modalLoading')">打开loading动画</a>
+    </br>
   </div>
   <div style="height:2000px;width:100%;background:lightcyan;line-height:2000px;">占位符</div>
 
@@ -121,8 +164,7 @@
   <div id="modalMiddle" style="display:none;" class="modal">
     <div class="modal-frame-middle">
       <div class="modal-content-warp">
-        提示消息</br>
-        loading....
+        中间提示消息
       </div>
     </div>
   </div>
@@ -132,6 +174,16 @@
       <div class="modal-content-warp">
         全文信息
         <span style="float:right;" onclick="testCloseModal('modalFull')">关闭</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalLoading" style="display:none;" class="modal">
+    <div class="modal-frame-middle">
+      <div class="modal-content-warp">
+        <div class="loading">
+          <div class="loading-icon"></div>
+        </div>
       </div>
     </div>
   </div>
