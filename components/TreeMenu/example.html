@@ -11,16 +11,17 @@
       background: #ccc;
     }
 
-    .menu {
+    .chjmenu {
       margin: 0;
       padding: 0;
+
     }
 
-    .menu ul {
+    .chjmenu ul {
       padding-left: 0px;
     }
 
-    .menu li {
+    .chjmenu li {
       padding: 0;
       margin: 0;
       list-style: none;
@@ -30,7 +31,7 @@
       outline: 0;
     }
 
-    .menu a {
+    .chjmenu a {
       cursor: pointer;
       display: block;
       text-decoration: none;
@@ -40,46 +41,70 @@
       background: #fff;
     }
 
+    .chjmenu .item:hover {
+      background: red;
+      color: #fff;
+    }
+
+    .chjmenu .itemactived>a {
+      background: red;
+      color: #fff;
+    }
+
+    .chjmenu .rooticon {
+      float: right;
+      padding-right: 20px;
+      /* background:url() */
+    }
+
+    .chjmenu .parenticon {
+      padding-right: 5px;
+      /* background:url() */
+    }
+
+    .chjmenu .parentunexpand {
+      display: none;
+    }
+
     /* 设置多级ul li 来指定padding-left位置 */
 
     /* 一级 */
 
-    .menu>li>a {
+    .chjmenu>li>a {
       padding-left: 20px;
       height: 40px;
       line-height: 40px;
-      background: red;
-      color: #fff;
+      color: #323232;
       border-bottom: solid 1px #ccc;
     }
 
     /* 二级 */
 
-    .menu>li>ul>li>a {
+    .chjmenu>li>ul>li>a {
       padding-left: 30px;
     }
 
     /* 三级 */
 
-    .menu>li>ul>li>ul>li>a {
+    .chjmenu>li>ul>li>ul>li>a {
       padding-left: 40px;
     }
 
     /* 四级 */
 
-    .menu>li>ul>li>ul>li>ul>li>a {
+    .chjmenu>li>ul>li>ul>li>ul>li>a {
       padding-left: 50px;
     }
 
     /* 五级 */
 
-    .menu>li>ul>li>ul>li>ul>li>ul>li>a {
+    .chjmenu>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 60px;
     }
 
     /* 六级 */
 
-    .menu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
+    .chjmenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 60px;
     }
   </style>
@@ -87,9 +112,8 @@
 
 <body>
   <div class="main">
-
     <!-- 树形菜单 -->
-    <div id="menuid" style="margin-top:20px;border-radius:6px;min-height:50px;overflow:hidden;"></div>
+    <div id="menuid" style="margin-top:20px;border-radius:6px;min-height:50px;overflow:hidden; min-width:200px;"></div>
   </div>
 </body>
 
@@ -99,10 +123,19 @@
   (function (window, undefined) {
 
     var defaultOps = {
-      rootUlClass: 'menu',
+      rootUlClass: 'chjmenu',
       rootItemClass: 'rootitem',
+      rootIconClass: 'rooticon',
+      rootExpandClass: 'rootexpand',
+      rootUnExpandClass: 'rootunexpand',
+      rootActivedClass: 'rootactived',
       parentItemClass: 'parentitem',
+      parentIconClass: 'parenticon',
+      parentExpandClass: 'parentexpand',
+      parentUnExpandClass: 'parentunexpand',
+      parentActivedClass: 'parentactived',
       itemClass: 'item',
+      itemActivedClass: 'itemactived',
       aTarget: '_self'
     };
 
@@ -113,6 +146,7 @@
       }
       this.ops = options;
       this.init();
+      _handler.onClickNode();
     }
 
     ChjMenu.prototype.init = function () {
@@ -121,31 +155,35 @@
       var data = _ops.data;
       var html = [];
       html.push("<ul class='" + _ops.rootUlClass + "'>");
-      html.push("<li>");
       this.makeHtml(html, data, 0);
-      html.push("</li>");
       html.push("</ul>");
       document.getElementById(id).innerHTML = html.join("");
     };
 
     ChjMenu.prototype.makeHtml = function (html, data, rootIndex) {
+      var _ops = this.ops;
       data = data || [];
       for (var i = 0; i < data.length; i++) {
         var node = data[i];
         if (rootIndex === 0) {
+          var itemClass = _ops.rootItemClass;
+          html.push("<li class='" + itemClass + "'>");
           this.makeRootNodeHtml(html, node);
           if (node.children && node.children.length > 0) {
-            html.push("<ul>");
+            this.makeChildrenUlBeforeNodeHtml(html, node);
             this.makeHtml(html, node.children);
-            html.push("</ul>");
+            this.makeChildrenUlAfterNodeHtml(html, node);
           }
+          html.push("</li>");
         } else {
           if (node.children && node.children.length > 0) {
-            html.push("<li>");
+            var itemClass = _ops.parentItemClass;
+            html.push("<li class='" + itemClass + "'>");
             this.makeParentNodeHtml(html, node);
-            html.push("<ul>");
+            this.makeChildrenUlBeforeNodeHtml(html, node);
             this.makeHtml(html, node.children);
-            html.push("</ul></li>");
+            this.makeChildrenUlAfterNodeHtml(html, node);
+            html.push("</li>");
           } else {
             this.makeItemNodeHtml(html, node);
           }
@@ -155,27 +193,38 @@
 
     ChjMenu.prototype.makeRootNodeHtml = function (html, node) {
       var _ops = this.ops;
-      var itemClass = _ops.rootItemClass;
-      html.push(this.makeABeforeNodeHtml(html, node, itemClass));
+      var rootIconClass = _ops.rootIconClass;
+      html.push(this.makeABeforeNodeHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
-      html.push("<span>icon</span>");
+      html.push("<span class='" + rootIconClass + "'>icon</span>");
       html.push(this.makeAAfterNodeHtml(html, node));
     };
 
     ChjMenu.prototype.makeParentNodeHtml = function (html, node) {
       var _ops = this.ops;
-      var itemClass = _ops.parentItemClass;
-      html.push(this.makeABeforeNodeHtml(html, node, itemClass));
-      html.push("<span>icon</span>");
+      html.push(this.makeABeforeNodeHtml(html, node));
+      var parentIconClass = _ops.parentIconClass;
+      html.push("<span class='" + parentIconClass + "'>icon</span>");
       html.push(this.makeNodeTextHtml(html, node));
       html.push(this.makeAAfterNodeHtml(html, node));
+    };
+
+    ChjMenu.prototype.makeChildrenUlBeforeNodeHtml = function (html, node) {
+      var _ops = this.ops;
+      var ulClass = this.checkNodeIsExpand(node) ? _ops.parentExpandClass : _ops.parentUnExpandClass;
+      html.push("<ul class='" + ulClass + "'>");
+    };
+
+    ChjMenu.prototype.makeChildrenUlAfterNodeHtml = function (html, node) {
+      html.push("</ul>");
     };
 
     ChjMenu.prototype.makeItemNodeHtml = function (html, node) {
       var _ops = this.ops;
       var itemClass = _ops.itemClass;
-      html.push("<li>");
-      html.push(this.makeABeforeNodeHtml(html, node, itemClass));
+      var liActived = node.actived ? _ops.itemActivedClass : "";
+      html.push("<li class='" + liActived + " " + itemClass + "'>");
+      html.push(this.makeABeforeNodeHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
       html.push(this.makeAAfterNodeHtml(html, node));
       html.push("</li>");
@@ -184,14 +233,123 @@
     ChjMenu.prototype.makeNodeTextHtml = function (html, node) {
       html.push("<span>" + node.name + "</span>");
     };
-    ChjMenu.prototype.makeABeforeNodeHtml = function (html, node, itemClass) {
+
+    ChjMenu.prototype.makeABeforeNodeHtml = function (html, node) {
       var _ops = this.ops;
       var href = node.href;
       var target = node.target || _ops.aTarget;
-      html.push("<a " + (href ? ("href=" + href) : "") + " target=" + target + " class=" + itemClass + ">");
+      html.push("<a " + (href ? ("href=" + href) : "") + " target=" + target + ">");
     };
+
     ChjMenu.prototype.makeAAfterNodeHtml = function (html, node) {
       html.push("</a>");
+    };
+
+    ChjMenu.prototype.checkNodeIsExpand = function (node) {
+      if (node.expand && node.expand === true) {
+        return true;
+      } else {
+        if (node.children && node.children.length > 0) {
+          for (var i = 0; i < node.children.length; i++) {
+            var tmp = node.children[i];
+            if ((tmp.expand && tmp.expand === true) || (tmp.actived && tmp.actived === true)) {
+              return true;
+            } else {
+              if (tmp.children && tmp.children.length > 0) {
+                return this.checkNodeIsExpand(tmp);
+              }
+            }
+          }
+        }
+      }
+      return false;
+    }
+
+    _handler = {
+      onClickNode: function (event, node) {
+        var _that = this;
+        var nodes = document.querySelectorAll(".chjmenu a");
+        for (var i = 0; i < nodes.length; i++) {
+          var tmpNode = nodes[i];
+          if (tmpNode.getAttribute("href") && tmpNode.getAttribute("href") !== "#") {
+            //直接跳转即可
+          } else {
+            tmpNode.addEventListener("click", function (e) {
+
+              var tmpClass = this.parentElement.getAttribute("class");
+              if (_helper.hasClass(this.parentElement, "rootitem")) {
+                var ulEle = this.nextElementSibling;
+                if (ulEle) {
+                  if (_helper.hasClass(ulEle, "parentexpand")) {
+                    _helper.removeClass(ulEle, "parentexpand");
+                    _helper.addClass(ulEle, "parentunexpand");
+                  } else {
+                    _helper.removeClass(ulEle, "parentunexpand");
+                    _helper.addClass(ulEle, "parentexpand");
+                  }
+                } else {
+                  _that.removeAllNodeActived();
+                  _helper.addClass(this.parentElement, "itemactived");
+                }
+              } else if (_helper.hasClass(this.parentElement, "parentitem")) {
+                var ulEle = this.nextElementSibling;
+                if (ulEle) {
+                  if (_helper.hasClass(ulEle, "parentexpand")) {
+                    _helper.removeClass(ulEle, "parentexpand");
+                    _helper.addClass(ulEle, "parentunexpand");
+                  } else {
+                    _helper.removeClass(ulEle, "parentunexpand");
+                    _helper.addClass(ulEle, "parentexpand");
+                  }
+                } else {
+                  _that.removeAllNodeActived();
+                  _helper.addClass(this.parentElement, "itemactived");
+                }
+              } else {
+                _that.removeAllNodeActived();
+                _helper.addClass(this.parentElement, "itemactived");
+              }
+              console.log(tmpClass, "tmpClass");
+            })
+          }
+
+        }
+
+      },
+      removeAllNodeActived: function () {
+        // 移除现有全部actived的节点
+        var nodes = document.querySelectorAll(".chjmenu li");
+        for (var i = 0; i < nodes.length; i++) {
+          _helper.removeClass(nodes[i], "itemactived");
+        }
+      }
+    }
+
+    _helper = {
+      hasClass: function (el, className) {
+        let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+        return reg.test(el.className)
+      },
+      addClass: function (el, className) {
+        if (this.hasClass(el, className)) {
+          return
+        }
+        let newClass = el.className.split(' ')
+        newClass.push(className)
+        el.className = newClass.join(' ')
+      },
+      removeClass: function (el, className) {
+        if (this.hasClass(el, className)) {
+          let classArray = el.className.split(' ')
+          let newClass = []
+          classArray.forEach(element => {
+            if (element !== className) {
+              newClass.push(element)
+            }
+          })
+          el.className = newClass.join(' ')
+        }
+      }
     };
 
     window.ChjMenu = ChjMenu;
@@ -203,12 +361,14 @@
       "name": "root11",
       "children": [{
         "name": "root111",
-        "href": "#"
+        "href": "#",
+        "actived": true
       }, {
         "name": "root112",
         "href": "#",
         "children": [{
           "name": "root1121",
+          "actived": true,
           "href": "#"
         }]
       }]
