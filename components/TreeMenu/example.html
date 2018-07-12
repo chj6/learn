@@ -46,26 +46,41 @@
       color: #fff;
     }
 
-    .chjmenu .itemactived>a {
-      background: red;
+    .chjmenu .rootactived>a {
+      background:red;
       color: #fff;
     }
 
+    .chjmenu .itemactived>a {
+      background: #ccc;
+      color: red;
+    }
+
+    /* 根节点默认图标 */
     .chjmenu .rooticon {
       float: right;
       padding-right: 20px;
       color: green;
     }
 
+    /* 根节点展开样式 */
+    .chjmenu .rootexpand>a {
+      background: red;
+      color: #fff;
+    }
+
+    /* 根节点展开图标 */
     .chjmenu .rootexpand>a>.rooticon {
       color: blue;
     }
 
+    /* 父节点默认图标 */
     .chjmenu .parenticon {
       padding-right: 5px;
       color: green;
     }
 
+    /* 父节点展开图标 */
     .chjmenu .parentexpand>a>.parenticon {
       color: blue;
     }
@@ -79,9 +94,7 @@
     }
 
     /* 设置多级ul li 来指定padding-left位置 */
-
     /* 一级 */
-
     .chjmenu>li>a {
       padding-left: 20px;
       height: 40px;
@@ -91,31 +104,26 @@
     }
 
     /* 二级 */
-
     .chjmenu>li>ul>li>a {
       padding-left: 30px;
     }
 
     /* 三级 */
-
     .chjmenu>li>ul>li>ul>li>a {
       padding-left: 40px;
     }
 
     /* 四级 */
-
     .chjmenu>li>ul>li>ul>li>ul>li>a {
       padding-left: 50px;
     }
 
     /* 五级 */
-
     .chjmenu>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 60px;
     }
 
     /* 六级 */
-
     .chjmenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 60px;
     }
@@ -290,29 +298,30 @@
             //直接跳转即可
           } else {
             tmpNode.addEventListener("click", function (e) {
-              var itemActived = _constClass.itemActived;
               var parentLiEle = this.parentElement;
               if (_helper.hasClass(parentLiEle, _constClass.rootItem)) { // root节点
+                _helper.removeClass(parentLiEle, _constClass.rootActived);
                 var ulEle = this.nextElementSibling;
                 if (ulEle) {
                   _helper.toggleClass(ulEle, _constClass.rootExpand, _constClass.rootUnExpand);
                   _helper.toggleClass(parentLiEle, _constClass.rootExpand);
                 } else {
                   _that.removeAllNodeActived();
-                  _helper.addClass(parentLiEle, itemActived);
+                  _helper.addClass(parentLiEle, _constClass.rootActived);
                 }
               } else if (_helper.hasClass(parentLiEle, _constClass.parentItem)) { // 有子节点的父节点
+                _helper.removeClass(parentLiEle, _constClass.parentActived);
                 var ulEle = this.nextElementSibling;
                 if (ulEle) {
                   _helper.toggleClass(ulEle, _constClass.parentExpand, _constClass.parentUnExpand);
                   _helper.toggleClass(parentLiEle, _constClass.parentExpand);
                 } else {
                   _that.removeAllNodeActived();
-                  _helper.addClass(parentLiEle, itemActived);
+                  _helper.addClass(parentLiEle, _constClass.parentActived);
                 }
               } else { // 正常节点
                 _that.removeAllNodeActived();
-                _helper.addClass(parentLiEle, itemActived);
+                _helper.addClass(parentLiEle, _constClass.itemActived);
               }
             })
           }
@@ -381,6 +390,11 @@
           "actived": true,
           "href": "#"
         }]
+      }]
+    }, {
+      "name": "root12",
+      "children": [{
+        "name": "root121"
       }]
     }]
   }, {
