@@ -62,6 +62,10 @@
       /* background:url() */
     }
 
+    .chjmenu .rootunexpand {
+      display: none;
+    }
+
     .chjmenu .parentunexpand {
       display: none;
     }
@@ -122,20 +126,26 @@
 <script>
   (function (window, undefined) {
 
+    // 如果需要修改样式，只能通过外部覆盖样式即可，不能修改类名
+    var _const = {
+      className: {
+        rootUlClass: 'chjmenu',
+        rootItemClass: 'rootitem',
+        rootIconClass: 'rooticon',
+        rootExpandClass: 'rootexpand',
+        rootUnExpandClass: 'rootunexpand',
+        rootActivedClass: 'rootactived',
+        parentItemClass: 'parentitem',
+        parentIconClass: 'parenticon',
+        parentExpandClass: 'parentexpand',
+        parentUnExpandClass: 'parentunexpand',
+        parentActivedClass: 'parentactived',
+        itemClass: 'item',
+        itemActivedClass: 'itemactived',
+      }
+    }
+
     var defaultOps = {
-      rootUlClass: 'chjmenu',
-      rootItemClass: 'rootitem',
-      rootIconClass: 'rooticon',
-      rootExpandClass: 'rootexpand',
-      rootUnExpandClass: 'rootunexpand',
-      rootActivedClass: 'rootactived',
-      parentItemClass: 'parentitem',
-      parentIconClass: 'parenticon',
-      parentExpandClass: 'parentexpand',
-      parentUnExpandClass: 'parentunexpand',
-      parentActivedClass: 'parentactived',
-      itemClass: 'item',
-      itemActivedClass: 'itemactived',
       aTarget: '_self'
     };
 
@@ -144,6 +154,11 @@
       for (key in defaultOps) {
         options[key] = options[key] || defaultOps[key];
       }
+      // 默认样式赋值
+      for (key in _const.className) {
+        options[key] = _const.className[key];
+      }
+
       this.ops = options;
       this.init();
       _handler.onClickNode();
@@ -170,7 +185,7 @@
           html.push("<li class='" + itemClass + "'>");
           this.makeRootNodeHtml(html, node);
           if (node.children && node.children.length > 0) {
-            this.makeChildrenUlBeforeNodeHtml(html, node);
+            this.makeChildrenUlBeforeNodeHtml(html, node, true);
             this.makeHtml(html, node.children);
             this.makeChildrenUlAfterNodeHtml(html, node);
           }
@@ -209,9 +224,15 @@
       html.push(this.makeAAfterNodeHtml(html, node));
     };
 
-    ChjMenu.prototype.makeChildrenUlBeforeNodeHtml = function (html, node) {
+    ChjMenu.prototype.makeChildrenUlBeforeNodeHtml = function (html, node, isRoot) {
       var _ops = this.ops;
       var ulClass = this.checkNodeIsExpand(node) ? _ops.parentExpandClass : _ops.parentUnExpandClass;
+      if (this.checkNodeIsExpand(node)) {
+        ulClass = isRoot ? _ops.rootExpandClass : _ops.parentExpandClass;
+      } else {
+        ulClass = isRoot ? _ops.rootUnExpandClass : _ops.parentUnExpandClass;
+      }
+
       html.push("<ul class='" + ulClass + "'>");
     };
 
@@ -280,13 +301,9 @@
               if (_helper.hasClass(this.parentElement, "rootitem")) {
                 var ulEle = this.nextElementSibling;
                 if (ulEle) {
-                  if (_helper.hasClass(ulEle, "parentexpand")) {
-                    _helper.removeClass(ulEle, "parentexpand");
-                    _helper.addClass(ulEle, "parentunexpand");
-                  } else {
-                    _helper.removeClass(ulEle, "parentunexpand");
-                    _helper.addClass(ulEle, "parentexpand");
-                  }
+                  var rootExpand = _const.className.rootExpandClass;
+                  var rootUnExpand = _const.className.rootUnExpandClass;
+                  _helper.toggleClass(ulEle, rootExpand, rootUnExpand);
                 } else {
                   _that.removeAllNodeActived();
                   _helper.addClass(this.parentElement, "itemactived");
@@ -294,13 +311,9 @@
               } else if (_helper.hasClass(this.parentElement, "parentitem")) {
                 var ulEle = this.nextElementSibling;
                 if (ulEle) {
-                  if (_helper.hasClass(ulEle, "parentexpand")) {
-                    _helper.removeClass(ulEle, "parentexpand");
-                    _helper.addClass(ulEle, "parentunexpand");
-                  } else {
-                    _helper.removeClass(ulEle, "parentunexpand");
-                    _helper.addClass(ulEle, "parentexpand");
-                  }
+                  var parentExpand = _const.className.parentExpandClass;
+                  var parentUnExpand = _const.className.parentUnExpandClass;
+                  _helper.toggleClass(ulEle, parentExpand, parentUnExpand);
                 } else {
                   _that.removeAllNodeActived();
                   _helper.addClass(this.parentElement, "itemactived");
@@ -312,9 +325,7 @@
               console.log(tmpClass, "tmpClass");
             })
           }
-
         }
-
       },
       removeAllNodeActived: function () {
         // 移除现有全部actived的节点
@@ -349,6 +360,15 @@
           })
           el.className = newClass.join(' ')
         }
+      },
+      toggleClass: function (el, hasClassName, newClassName) {
+        if (_helper.hasClass(el, hasClassName)) {
+          _helper.removeClass(el, hasClassName);
+          _helper.addClass(el, newClassName);
+        } else {
+          _helper.removeClass(el, newClassName);
+          _helper.addClass(el, hasClassName);
+        }
       }
     };
 
@@ -361,8 +381,7 @@
       "name": "root11",
       "children": [{
         "name": "root111",
-        "href": "#",
-        "actived": true
+        "href": "#"
       }, {
         "name": "root112",
         "href": "#",
