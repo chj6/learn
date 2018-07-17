@@ -188,7 +188,7 @@
 
     function MSTreeMenu(options) {
       // 对参数和默认参数进行合并
-      for (key in defaultOps) {
+      for (var key in defaultOps) {
         options[key] = options[key] || defaultOps[key];
       }
       this.ops = options;
@@ -311,7 +311,7 @@
       return false;
     }
 
-    _handler = {
+    var _handler = {
       onClickNode: function (warpId) {
         var _that = this;
         var nodes = document.querySelectorAll("#" + warpId + " .mstreemenu a"); // 获取所有的a标签并绑定单击事件
@@ -359,7 +359,7 @@
       }
     }
 
-    _helper = {
+    var _helper = {
       hasClass: function (el, className) {
         let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
         return reg.test(el.className)
