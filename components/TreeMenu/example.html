@@ -108,9 +108,7 @@
     }
 
     /* 设置多级ul li 来指定padding-left位置 */
-
     /* 一级 */
-
     .mstreemenu>li>a {
       padding-left: 20px;
       height: 60px;
@@ -119,34 +117,29 @@
       border-bottom: solid 1px #ccc;
     }
 
-    /* 二级 */
-
+    /* 二级*/
     .mstreemenu>li>ul>li>a {
       padding-left: 30px;
     }
 
-    /* 三级 */
-
+    /* 三级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
     .mstreemenu>li>ul>li>ul>li>a {
-      padding-left: 40px;
+      padding-left: 51px;
     }
 
-    /* 四级 */
-
+    /* 四级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
     .mstreemenu>li>ul>li>ul>li>ul>li>a {
-      padding-left: 50px;
+      padding-left: 72px;
     }
 
-    /* 五级 */
-
+    /* 五级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>a {
-      padding-left: 60px;
+      padding-left: 93px;
     }
 
-    /* 六级 */
-
+    /* 六级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
-      padding-left: 60px;
+      padding-left: 114px;
     }
   </style>
 </head>
@@ -183,7 +176,7 @@
     }
 
     var defaultOps = {
-      aTarget: '_self'
+      aTarget: '_self',
     };
 
     function MSTreeMenu(options) {
@@ -284,7 +277,7 @@
       var _ops = this.ops;
       var href = node.href;
       var target = node.target || _ops.aTarget;
-      html.push("<a " + (href ? ("href=" + href) : "") + " target=" + target + ">");
+      html.push("<a " + (_helper.checkHrefIsValid(href) ? ("href=" + href) : "") + " target=" + target + ">");
     };
 
     MSTreeMenu.prototype.makeAAfterNodeHtml = function (html, node) {
@@ -392,6 +385,12 @@
           _helper.removeClass(el, newClassName);
           _helper.addClass(el, hasClassName);
         }
+      },
+      checkHrefIsValid: function (href) {
+        if (href === "" || href === null || href === undefined || href === "#") {
+          return false;
+        }
+        return true;
       }
     };
 
