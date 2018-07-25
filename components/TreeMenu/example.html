@@ -36,9 +36,13 @@
       display: block;
       text-decoration: none;
       color: #333;
-      height: 50px;
-      line-height: 50px;
+      padding: 15px 0;
       background: #fff;
+    }
+
+    .mstreemenu a>span {
+      white-space: normal;
+      word-wrap: break-word;
     }
 
     .mstreemenu .item:hover {
@@ -107,37 +111,42 @@
       display: none;
     }
 
-    /* 设置多级ul li 来指定padding-left位置 */
     /* 一级 */
+
     .mstreemenu>li>a {
-      padding-left: 20px;
       height: 60px;
       line-height: 60px;
+      padding: 0 0 0 20px;
       color: #323232;
       border-bottom: solid 1px #ccc;
     }
 
     /* 二级*/
+
     .mstreemenu>li>ul>li>a {
       padding-left: 30px;
     }
 
     /* 三级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
+
     .mstreemenu>li>ul>li>ul>li>a {
       padding-left: 51px;
     }
 
     /* 四级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
+
     .mstreemenu>li>ul>li>ul>li>ul>li>a {
       padding-left: 72px;
     }
 
     /* 五级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
+
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 93px;
     }
 
     /* 六级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
+
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 114px;
     }
