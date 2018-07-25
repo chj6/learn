@@ -271,7 +271,7 @@
 
     MSTreeMenu.prototype.makeItemNodeHtml = function (html, node) {
       var itemClass = _constClass.itemClass;
-      var liActived = (node.id === this.ops.activedId) ? _constClass.itemActived : "";
+      var liActived = (node.id === this.ops.activedId || node.actived) ? _constClass.itemActived : "";
       html.push("<li class='" + liActived + " " + itemClass + "'>");
       html.push(this.makeABeforeNodeHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
@@ -297,17 +297,18 @@
     MSTreeMenu.prototype.checkNodeIsExpand = function (node) {
       if (node.expand && node.expand === true) {
         return true;
-      } else {
-        if (node.children && node.children.length > 0) {
-          for (var i = 0; i < node.children.length; i++) {
-            var tmp = node.children[i];
-            if ((tmp.expand && tmp.expand === true) || (tmp.actived && tmp.actived === true) || (tmp.id === this.ops
-                .activedId)) {
+      }
+      if (node.children && node.children.length > 0) {
+        for (var i = 0; i < node.children.length; i++) {
+          var tmp = node.children[i];
+          if (tmp.children && tmp.children.length > 0) {
+            if (this.checkNodeIsExpand(tmp)) {
               return true;
-            } else {
-              if (tmp.children && tmp.children.length > 0) {
-                return this.checkNodeIsExpand(tmp);
-              }
+            }
+          }
+          else {
+            if ((tmp.id && tmp.id === this.ops.activedId) || (tmp.expand && tmp.expand === true) || (tmp.actived && tmp.actived === true)) {
+              return true;
             }
           }
         }
@@ -420,15 +421,17 @@
         "href": "#",
         "children": [{
           "name": "root1121",
-          "href": "#"
+          "href": "#",
+          "children": [{
+            "name": "root11211"
+          }]
         }]
       }]
     }, {
-      "name": "root12sssssssss",
+      "name": "root12",
       "children": [{
         "name": "root121",
-        activedId:true,
-        "id": "sss"
+        "id": 'sss'
       }]
     }]
   }, {
