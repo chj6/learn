@@ -202,6 +202,7 @@
       var _ops = this.ops;
       var id = _ops.warpId;
       var data = _ops.data;
+      var activedId = _ops.activedId;
       var html = [];
       html.push("<ul class='" + _constClass.rootUl + "'>");
       this.makeHtml(html, data, 0);
@@ -270,7 +271,7 @@
 
     MSTreeMenu.prototype.makeItemNodeHtml = function (html, node) {
       var itemClass = _constClass.itemClass;
-      var liActived = node.actived ? _constClass.itemActived : "";
+      var liActived = (node.id === this.ops.activedId) ? _constClass.itemActived : "";
       html.push("<li class='" + liActived + " " + itemClass + "'>");
       html.push(this.makeABeforeNodeHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
@@ -300,7 +301,8 @@
         if (node.children && node.children.length > 0) {
           for (var i = 0; i < node.children.length; i++) {
             var tmp = node.children[i];
-            if ((tmp.expand && tmp.expand === true) || (tmp.actived && tmp.actived === true)) {
+            if ((tmp.expand && tmp.expand === true) || (tmp.actived && tmp.actived === true) || (tmp.id === this.ops
+                .activedId)) {
               return true;
             } else {
               if (tmp.children && tmp.children.length > 0) {
@@ -418,14 +420,15 @@
         "href": "#",
         "children": [{
           "name": "root1121",
-          "actived": true,
           "href": "#"
         }]
       }]
     }, {
-      "name": "root12",
+      "name": "root12sssssssss",
       "children": [{
-        "name": "root121"
+        "name": "root121",
+        activedId:true,
+        "id": "sss"
       }]
     }]
   }, {
@@ -449,6 +452,7 @@
 
   new MSTreeMenu({
     data: data,
-    warpId: "menuid"
+    warpId: "menuid",
+    activedId: "sss"
   });
 </script>
