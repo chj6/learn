@@ -366,26 +366,26 @@
 
     var _helper = {
       hasClass: function (el, className) {
-        let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+        var reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
         return reg.test(el.className)
       },
       addClass: function (el, className) {
         if (this.hasClass(el, className)) {
           return
         }
-        let newClass = el.className.split(' ')
+        var newClass = el.className.split(' ')
         newClass.push(className)
         el.className = newClass.join(' ')
       },
       removeClass: function (el, className) {
         if (this.hasClass(el, className)) {
-          let classArray = el.className.split(' ')
-          let newClass = []
-          classArray.forEach(element => {
-            if (element !== className) {
-              newClass.push(element)
+          var classArray = el.className.split(' ')
+          var newClass = []
+          for (var i = 0; i < classArray.length; i++) {
+            if (classArray[i] !== className) {
+              newClass.push(element);
             }
-          })
+          }
           el.className = newClass.join(' ')
         }
       },
