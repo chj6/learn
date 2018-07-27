@@ -12,5 +12,7 @@
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
+  - [https配置](/config/https-config.md)
+
 
 - [链接地址](/links/links.md)
