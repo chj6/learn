@@ -1,4 +1,4 @@
-# 配置HTTPS记录
+# 配置HTTPS记录
 
 涉及到阿里云的产品（如果找不到相关产品，可以直接在阿里云中搜索）：
 - 域名
@@ -30,7 +30,7 @@
 8. 选择后缀为.pfx的文件，并且输入pfx-password.txt中的密码，再确定即可
 ![8](images/https-08-pfx.png)
 
-9. 打开iis管理器，根据下图顺序进行操作，选择需要绑定证书的站点 -> 绑定 -> 添加 -> 选择https、端口443、输入主机名：www.yourdomainname.com、选择alias证书，最后确定即可。
+9. 打开iis管理器，根据下图顺序进行操作，选择需要绑定证书的站点 -> 绑定 -> 添加 -> 选择https、端口443、输入主机名：www.yourdomainname.com、选择alias证书，最后确定即可。
 ![9](images/https-09-iisconfig.png)
 
-此时在浏览器中直接访问:https://www.yourdomainname.com就行了。
+此时在浏览器中直接访问:https://www.yourdomainname.com就行了。
