@@ -383,7 +383,7 @@
           var newClass = []
           for (var i = 0; i < classArray.length; i++) {
             if (classArray[i] !== className) {
-              newClass.push(element);
+              newClass.push(classArray[i]);
             }
           }
           el.className = newClass.join(' ')
