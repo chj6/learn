@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        .fl {
+            float: left
+        }
+
+        .box {
+            height: 40px;
+            line-height: 40px;
+            margin: 10px;
+            text-align: center
+        }
+
+        .box button {
+            padding: 0 10px;
+            margin: 0 10px;
+            height: 40px;
+            float: left;
+            cursor: pointer;
+            border: 1px solid #a9a9a9;
+            background-color: #fff;
+            border-radius:5px;
+        }
+
+        .box button:hover {
+            border:1px solid  #d53420;
+            background-color: #d53420;
+            color:#fff;
+        }
+
+        .box button[disabled=disabled],button[disabled=disabled]:hover{
+            border:1px solid #ccc;
+            background-color: #fff;
+            color:#ccc;
+            cursor:not-allowed;
+        }
+
+        .box .first-page,
+        .box .last-page {
+            margin: 0
+        }
+
+        .box .pageWrap {
+            height: 40px;
+            float: left;
+            overflow: hidden
+        }
+
+        .box .pageWrap ul {
+            width: 1e5px;
+            height: 40px;
+            float: left
+        }
+
+        .box .pageWrap ul li {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border: 1px solid #a9a9a9;
+            border-radius: 5px; 
+            line-height: 40px;
+            box-sizing: border-box;
+            cursor: pointer;
+            float: left
+        }
+
+        .box .pageWrap ul .sel-page {
+            border:1px solid  #d53420;
+            background-color: #d53420;
+            color:#fff;
+        }
+
+        .box .jump-text {
+            width: 60px;
+            height: 40px;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 0 5px;
+            float: left
+        }
+
+        .box .jump-button {
+            margin: 0;
+            float: left
+        }
+
+        .box .total-pages,
+        .box .total-count {
+            margin-left: 10px;
+            float: left;
+            font-size: 14px
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box" id="pagingPlugin"></div>
+</body>
+
+<script>
+
+    (function ($, window, document) {
+        function Paging(el, options) {
+            this.el = el;
+            this.options = {
+                pageNo: options.initPageNo || 1,
+                totalPages: options.totalPages || 1,
+                totalCount: options.totalCount || '',
+                slideSpeed: options.slideSpeed || 0,
+                jump: options.jump || false,
+                liWidth: options.liWidth || 50, // 注意包括li的左右padding、margin
+                firstPageNeedLoad: options.firstPageNeedLoad || false,// 第一次加载第一页是否需要callback
+                checkPageChange: options.checkPageChange || true, // 检查page是否变动了
+                callback: options.callback || function () { }
+            };
+            this.init();
+        }
+        Paging.prototype = {
+            constructor: Paging,
+            init: function () {
+                this.createDom();
+                this.bindEvents();
+            },
+            reloadFuc: function (ops) {
+                if ((ops.pageNo && ops.pageNo !== this.options.pageNo)
+                    || (ops.totalPages && ops.totalPages !== this.options.totalPages)
+                    || (ops.totalCount && ops.totalCount !== this.options.totalCount)) {
+                    this.options.totalPages = ops.totalPages;
+                    this.options.pageNo = ops.pageNo;
+                    this.options.noHandle = true;
+                    this.init();
+                }
+            },
+            createDom: function () {
+                var that = this
+                    , ulDom = ''
+                    , jumpDom = ''
+                    , content = ''
+                    , liWidth = that.options.liWidth
+                    , totalPages = that.options.totalPages
+                    , wrapLength = 0;
+                totalPages > 5 ? wrapLength = 5 * liWidth : wrapLength = totalPages * liWidth;
+                for (var i = 1; i <= that.options.totalPages; i++) {
+                    i != 1 ? ulDom += '<li>' + i + '</li>' : ulDom += '<li class="sel-page">' + i + '</li>';
+                }
+                that.options.jump ? jumpDom = '<input type="text" placeholder="1" class="jump-text" id="jumpText"><button type="button" class="jump-button" id="jumpBtn">跳转</button>' : jumpDom = '';
+                content = '<button type="button" id="firstPage" class="turnPage first-page">首页</button>' + '<button class="turnPage" id="prePage">上一页</button>' + '<div class="pageWrap" style="width:' + wrapLength + 'px">' + '<ul id="pageSelect" style="transition:all ' + that.options.slideSpeed + 'ms">' + ulDom + '</ul></div>' + '<button class="turnPage" id="nextPage" style="margin-left:0px;">下一页</button>' + '<button type="button" id="lastPage" class="last-page">尾页</button>' + jumpDom + '<p class="total-pages">共&nbsp;' + that.options.totalPages + '&nbsp;页</p>' + '<p class="total-count">' + that.options.totalCount + '</p>';
+                that.el.html(content);
+            },
+            bindEvents: function () {
+                var that = this
+                    , pageSelect = $('#pageSelect')
+                    , lis = pageSelect.children()
+                    , liWidth = that.options.liWidth
+                    , totalPages = that.options.totalPages
+                    , firstPageNeedLoad = that.options.firstPageNeedLoad
+                    , pageIndex = that.options.pageNo
+                    , distance = 0
+                    , prePage = $('#prePage')
+                    , nextPage = $('#nextPage')
+                    , firstPage = $('#firstPage')
+                    , lastPage = $('#lastPage')
+                    , jumpBtn = $('#jumpBtn')
+                    , jumpText = $('#jumpText');
+                prePage.on('click', function () {
+                    pageIndex--;
+                    if (pageIndex < 1)
+                        pageIndex = 1;
+                    handles(pageIndex);
+                })
+                nextPage.on('click', function () {
+                    pageIndex++;
+                    if (pageIndex > lis.length)
+                        pageIndex = lis.length;
+                    handles(pageIndex);
+                })
+                firstPage.on('click', function () {
+                    pageIndex = 1;
+                    handles(pageIndex);
+                })
+                lastPage.on('click', function () {
+                    pageIndex = totalPages;
+                    handles(pageIndex);
+                })
+                jumpBtn.on('click', function () {
+                    var jumpNum = parseInt(jumpText.val().replace(/\D/g, ''));
+                    if (jumpNum && jumpNum >= 1 && jumpNum <= totalPages) {
+                        pageIndex = jumpNum;
+                        handles(pageIndex);
+                        jumpText.val(jumpNum);
+                    }
+                })
+                lis.on('click', function () {
+                    pageIndex = $(this).index() + 1;
+                    handles(pageIndex);
+                })
+                function handles(pageIndex) {
+                    lis.removeClass('sel-page').eq(pageIndex - 1).addClass('sel-page');
+                    if (pageIndex >= 3 && pageIndex <= totalPages - 2)
+                        distance = (pageIndex - 3) * liWidth;
+                    if (pageIndex == 2 || pageIndex == 1)
+                        distance = 0;
+                    if (pageIndex > totalPages - 2)
+                        distance = (totalPages - 5) * liWidth;
+                    pageSelect.css('transform', 'translateX(' + (-distance) + 'px)');
+                    pageIndex == 1 ? firstPage.attr('disabled', true) : firstPage.attr('disabled', false);
+                    pageIndex == 1 ? prePage.attr('disabled', true) : prePage.attr('disabled', false);
+                    pageIndex == totalPages ? lastPage.attr('disabled', true) : lastPage.attr('disabled', false);
+                    pageIndex == totalPages ? nextPage.attr('disabled', true) : nextPage.attr('disabled', false);
+                    // 首次加载时，不需要执行回掉事件，因为首次列表已经渲染好了
+                    if (firstPageNeedLoad === false && pageIndex === that.options.pageNo) {
+                        firstPageNeedLoad = true;
+                        return false;
+                    } else {
+                        that.options.callback(pageIndex, that.reloadFuc.bind(that));
+                    }
+                }
+                handles(that.options.pageNo);
+            }
+        }
+        $.fn.paging = function (options) {
+            return new Paging($(this), options);
+        }
+    }
+    )(jQuery, window, document);
+
+
+</script>
+
+<script>
+
+    $('#pagingPlugin').paging({
+        initPageNo: 1, // 初始页码
+        totalPages: 3, //总页数
+        totalCount: '合计' + 200 + '条数据', // 条目总数
+        slideSpeed: 600, // 缓动速度。单位毫秒
+        jump: false, //是否支持跳转
+        callback: function (pageIndex, reloadFuc) { // 回调函数
+            //reloadFuc，当总页数量变动时，重新进行渲染分页插件
+            if (pageIndex === 2) {
+                reloadFuc({
+                    pageNo: pageIndex,
+                    totalPages: 20
+                });
+            }
+
+            if (pageIndex === 4) {
+                reloadFuc({
+                    pageNo: pageIndex,
+                    totalPages: 40
+                });
+            }
+        }
+    });
+
+</script>
+
+</html>
