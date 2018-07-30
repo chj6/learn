@@ -14,6 +14,10 @@
             list-style: none
         }
 
+        body{
+            text-align:center;
+        }
+
         .fl {
             float: left
         }
@@ -22,7 +26,8 @@
             height: 40px;
             line-height: 40px;
             margin: 10px;
-            text-align: center
+            text-align: center;
+            display: inline-block;
         }
 
         .box button {
@@ -33,20 +38,21 @@
             cursor: pointer;
             border: 1px solid #a9a9a9;
             background-color: #fff;
-            border-radius:5px;
+            border-radius: 5px;
         }
 
         .box button:hover {
-            border:1px solid  #d53420;
+            border: 1px solid #d53420;
             background-color: #d53420;
-            color:#fff;
+            color: #fff;
         }
 
-        .box button[disabled=disabled],button[disabled=disabled]:hover{
-            border:1px solid #ccc;
+        .box button[disabled=disabled],
+        button[disabled=disabled]:hover {
+            border: 1px solid #ccc;
             background-color: #fff;
-            color:#ccc;
-            cursor:not-allowed;
+            color: #ccc;
+            cursor: not-allowed;
         }
 
         .box .first-page,
@@ -71,17 +77,17 @@
             height: 40px;
             margin-right: 10px;
             border: 1px solid #a9a9a9;
-            border-radius: 5px; 
+            border-radius: 5px;
             line-height: 40px;
             box-sizing: border-box;
             cursor: pointer;
             float: left
         }
 
-        .box .pageWrap ul .sel-page {
-            border:1px solid  #d53420;
+        .box .pageWrap ul .sel-page,li:hover {
+            border: 1px solid #d53420;
             background-color: #d53420;
-            color:#fff;
+            color: #fff;
         }
 
         .box .jump-text {
@@ -104,7 +110,6 @@
             float: left;
             font-size: 14px
         }
-
     </style>
 </head>
 
@@ -125,7 +130,6 @@
                 jump: options.jump || false,
                 liWidth: options.liWidth || 50, // 注意包括li的左右padding、margin
                 firstPageNeedLoad: options.firstPageNeedLoad || false,// 第一次加载第一页是否需要callback
-                checkPageChange: options.checkPageChange || true, // 检查page是否变动了
                 callback: options.callback || function () { }
             };
             this.init();
@@ -140,8 +144,9 @@
                 if ((ops.pageNo && ops.pageNo !== this.options.pageNo)
                     || (ops.totalPages && ops.totalPages !== this.options.totalPages)
                     || (ops.totalCount && ops.totalCount !== this.options.totalCount)) {
-                    this.options.totalPages = ops.totalPages;
-                    this.options.pageNo = ops.pageNo;
+                    this.options.totalPages = ops.totalPages || this.options.totalPages;
+                    this.options.pageNo = ops.pageNo || this.options.pageNo;
+                    this.options.totalCount = ops.totalCount || this.options.totalCount;
                     this.options.noHandle = true;
                     this.init();
                 }
@@ -211,12 +216,17 @@
                 })
                 function handles(pageIndex) {
                     lis.removeClass('sel-page').eq(pageIndex - 1).addClass('sel-page');
-                    if (pageIndex >= 3 && pageIndex <= totalPages - 2)
-                        distance = (pageIndex - 3) * liWidth;
-                    if (pageIndex == 2 || pageIndex == 1)
+                    if (totalPages <= 5) {
                         distance = 0;
-                    if (pageIndex > totalPages - 2)
-                        distance = (totalPages - 5) * liWidth;
+                    } else {
+                        if (pageIndex >= 3 && pageIndex <= totalPages - 2)
+                            distance = (pageIndex - 3) * liWidth;
+                        if (pageIndex == 2 || pageIndex == 1)
+                            distance = 0;
+                        if (pageIndex > totalPages - 2)
+                            distance = (totalPages - 5) * liWidth;
+                    }
+
                     pageSelect.css('transform', 'translateX(' + (-distance) + 'px)');
                     pageIndex == 1 ? firstPage.attr('disabled', true) : firstPage.attr('disabled', false);
                     pageIndex == 1 ? prePage.attr('disabled', true) : prePage.attr('disabled', false);
@@ -251,6 +261,7 @@
         slideSpeed: 600, // 缓动速度。单位毫秒
         jump: false, //是否支持跳转
         callback: function (pageIndex, reloadFuc) { // 回调函数
+            console.log(pageIndex,"pageindex pageindex");
             //reloadFuc，当总页数量变动时，重新进行渲染分页插件
             if (pageIndex === 2) {
                 reloadFuc({
@@ -262,7 +273,7 @@
             if (pageIndex === 4) {
                 reloadFuc({
                     pageNo: pageIndex,
-                    totalPages: 40
+                    totalCount:'合计'+ 300 +'条数据'
                 });
             }
         }
