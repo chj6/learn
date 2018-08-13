@@ -1,6 +1,6 @@
 # Learn
 
-  Demo：http://chj6.com
+  Demo：http://chenhongjun.cn
 
 - 组件
   - [模态框组件](/components/Modal/example.html)
