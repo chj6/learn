@@ -4,3 +4,5 @@
 
 - [Can I Use](https://caniuse.com/) ：查看css和js的兼容性情况
 
+- [Loading样式](https://loading.io/)：可以自定义loading的效果
+
