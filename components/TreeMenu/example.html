@@ -15,7 +15,6 @@
     .mstreemenu {
       margin: 0;
       padding: 0;
-
     }
 
     .mstreemenu ul {
@@ -77,7 +76,7 @@
     /* 根节点展开样式 */
 
     .mstreemenu .rootexpand>a {
-      background: red;
+      background: #E61700;
       color: #fff;
     }
 
@@ -217,7 +216,7 @@
         if (rootIndex === 0) {
           var itemClass = _constClass.rootItem;
           var rootExpandClass = this.checkNodeIsExpand(node) ? _constClass.rootExpand : "";
-          if(node.id &&node.id === this.ops.activedId){ // root如果选中激活的话，优先使用激活的样式
+          if (node.id && node.id === this.ops.activedId) { // root如果选中激活的话，优先使用激活的样式
             rootExpandClass = _constClass.rootActived;
           }
           html.push("<li class='" + _constClass.rootItem + " " + rootExpandClass + "'>");

@@ -14,15 +14,15 @@
             list-style: none
         }
 
-        body{
-            text-align:center;
+        body {
+            text-align: center;
         }
 
         .fl {
             float: left
         }
 
-        .box {
+        .off-box {
             height: 40px;
             line-height: 40px;
             margin: 10px;
@@ -30,7 +30,7 @@
             display: inline-block;
         }
 
-        .box button {
+        .off-box button {
             padding: 0 10px;
             margin: 0 10px;
             height: 40px;
@@ -41,13 +41,13 @@
             border-radius: 5px;
         }
 
-        .box button:hover {
+        .off-box button:hover {
             border: 1px solid #d53420;
             background-color: #d53420;
             color: #fff;
         }
 
-        .box button[disabled=disabled],
+        .off-box button[disabled=disabled],
         button[disabled=disabled]:hover {
             border: 1px solid #ccc;
             background-color: #fff;
@@ -55,24 +55,24 @@
             cursor: not-allowed;
         }
 
-        .box .first-page,
-        .box .last-page {
+        .off-box .first-page,
+        .off-box .last-page {
             margin: 0
         }
 
-        .box .pageWrap {
+        .off-box .pageWrap {
             height: 40px;
             float: left;
             overflow: hidden
         }
 
-        .box .pageWrap ul {
+        .off-box .pageWrap ul {
             width: 1e5px;
             height: 40px;
             float: left
         }
 
-        .box .pageWrap ul li {
+        .off-box .pageWrap ul li {
             width: 40px;
             height: 40px;
             margin-right: 10px;
@@ -84,13 +84,14 @@
             float: left
         }
 
-        .box .pageWrap ul .sel-page,li:hover {
+        .off-box .pageWrap ul .sel-page,
+        .off-box .pageWrap ul li:hover {
             border: 1px solid #d53420;
             background-color: #d53420;
             color: #fff;
         }
 
-        .box .jump-text {
+        .off-box .jump-text {
             width: 60px;
             height: 40px;
             box-sizing: border-box;
@@ -99,13 +100,13 @@
             float: left
         }
 
-        .box .jump-button {
+        .off-box .jump-button {
             margin: 0;
             float: left
         }
 
-        .box .total-pages,
-        .box .total-count {
+        .off-box .total-pages,
+        .off-box .total-count {
             margin-left: 10px;
             float: left;
             font-size: 14px
@@ -114,24 +115,30 @@
 </head>
 
 <body>
-    <div class="box" id="pagingPlugin"></div>
+    <div class="off-box" id="pagingPlugin"></div>
 </body>
 
 <script>
-    
-(function ($, window, document) {
+
+ (function ($, window, document) {
     function Paging(el, options) {
         this.el = el;
         this.options = {
             pageNo: options.initPageNo || 1,
             totalPages: options.totalPages || 1,
             totalCount: options.totalCount || '',
-            slideSpeed: options.slideSpeed || 0,
+            slideSpeed: options.slideSpeed || 600,
             jump: options.jump || false,
             liWidth: options.liWidth || 50, // 注意包括li的左右padding、margin
             firstPageNeedLoad: options.firstPageNeedLoad || false,// 第一次加载第一页是否需要callback
             callback: options.callback || function () { }
         };
+        // 样列：var ctrl = $("#id").Paging(); ctrl.reload(); 
+        this.reload = function (ops) {
+            this.options.pageNo = ops.pageNo || 1;
+            this.options.totalPages = ops.totalPages || 1;
+            this.init();
+        }
         this.init();
     }
     Paging.prototype = {
@@ -139,21 +146,6 @@
         init: function () {
             this.createDom();
             this.bindEvents();
-        },
-        reloadFuc: function (ops) {
-            if ((ops.pageNo !== undefined && ops.pageNo !== this.options.pageNo)
-                || (ops.totalPages !== undefined && ops.totalPages !== this.options.totalPages)
-                || (ops.totalCount !== undefined && ops.totalCount !== this.options.totalCount)) {
-                // 如果总页数等于0，直接将分页插件置空
-                if (ops.totalPages == "0") {
-                    $(this.el).html("");
-                    return;
-                }
-                this.options.totalPages = ops.totalPages || this.options.totalPages;
-                this.options.pageNo = ops.pageNo || this.options.pageNo;
-                this.options.totalCount = ops.totalCount || this.options.totalCount;
-                this.init();
-            }
         },
         createDom: function () {
             var that = this
@@ -230,7 +222,6 @@
                     if (pageIndex > totalPages - 2)
                         distance = (totalPages - 5) * liWidth;
                 }
-
                 pageSelect.css('transform', 'translateX(' + (-distance) + 'px)');
                 pageIndex == 1 ? firstPage.attr('disabled', true) : firstPage.attr('disabled', false);
                 pageIndex == 1 ? prePage.attr('disabled', true) : prePage.attr('disabled', false);
@@ -240,13 +231,13 @@
                 if (firstPageNeedLoad === false && pageIndex === that.options.pageNo) {
                     firstPageNeedLoad = true;
                     return false;
-                } else {
-                    that.options.callback(pageIndex, that.reloadFuc.bind(that));
                 }
+                that.options.callback(pageIndex);
             }
             handles(that.options.pageNo);
         }
     }
+    
     $.fn.paging = function (options) {
         return new Paging($(this), options);
     }
@@ -257,30 +248,44 @@
 
 <script>
 
-    $('#pagingPlugin').paging({
-        initPageNo: 1, // 初始页码
-        totalPages: 3, //总页数
-        totalCount: '合计' + 200 + '条数据', // 条目总数
-        slideSpeed: 600, // 缓动速度。单位毫秒
-        jump: false, //是否支持跳转
-        callback: function (pageIndex, reloadFuc) { // 回调函数
-            console.log(pageIndex,"pageindex pageindex");
-            //reloadFuc，当总页数量变动时，重新进行渲染分页插件
-            if (pageIndex === 2) {
-                reloadFuc({
-                    pageNo: pageIndex,
-                    totalPages: 20
-                });
-            }
 
-            if (pageIndex === 4) {
-                reloadFuc({
-                    pageNo: pageIndex,
-                    totalCount:'合计'+ 300 +'条数据'
+    var pagingCtrl;
+    var isFirst = true;
+
+    function initPaging() {
+        pagingCtrl = $('#pagingPlugin').paging({
+            initPageNo: 1, // 初始页码
+            totalPages: 10, //总页数
+            firstPageNeedLoad: true,
+            callback: function callback(pageIndex) {
+                // 回调函数
+                loadData({
+                    pageNo: 2,
+                    totalPages: 5
                 });
             }
+        });
+    }
+
+
+    function loadData(params) {
+        // 如果在刚开始的时候，直接重绘，会出现reload不存在的情况
+        if (Math.random() * 100 > 80 && isFirst==false) {
+            console.log("进入重绘");
+            // 如果需要reload
+            pagingCtrl.reload({
+                pageNo: params.pageNo,
+                totalPages: params.totalPages
+            });
         }
-    });
+        isFirst = false;
+    }
+
+    initPaging();
+
+
+
+
 
 </script>
 
