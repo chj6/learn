@@ -11,9 +11,11 @@
 - css基础知识
   - [伪类和伪元素](/css/pseudo-classes-elements.md)
 
+- js
+  - [fix元素跟随滚动](/js/fix-scroll.md)
+
 - 配置
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
-
 
 - [链接地址](/links/links.md)
