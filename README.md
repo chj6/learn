@@ -13,7 +13,7 @@
   - [css兼容性记录](/css/browser-diff-record.md)
 
 - js
-  - [fix元素跟随滚动](/js/fix-scroll.md)
+  - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
 
 - 配置
