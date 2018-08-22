@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>树形菜单</title>
-  <link rel="stylesheet" href="font/iconfont.css">
   <style>
     body {
       background: #ccc;
@@ -28,6 +27,10 @@
       text-align: left;
       white-space: nowrap;
       outline: 0;
+    }
+
+    .mstreemenu .rootitem{
+      border-bottom:solid 1px #f1f2f6;
     }
 
     .mstreemenu a {
@@ -54,6 +57,11 @@
       color: #fff;
     }
 
+    .mstreemenu .rootactived .rooticon {      
+      background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAASFBMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////8FevL4AAAAF3RSTlMA9+o92/Au4RwXKCL75zVFTadlhQu51+NX/cEAAAGRSURBVHja7d1BcoMwEETRAbCBAAaBYO5/02ySSsUFCy+SYtq/b/BqeoRWyOzldEuq3YtttthZCv/KliM7kv9kbzUc7k0ftlfuGpLaNSSVu4ZkdRFJ8iNJKwKJKFldRLK4iCQXKpKTbsWTdKWK5DGoSGYkSJC8kWRCggQJEiRIkCBBggQJkqtIChVJhQQJEjYeCRIknF3MBAmSZ0mnIqmDSSYZSYUECZI3kjyYCRIkSJAg4XtCu64tucnsCRIkSJAgQYIECRIkSJBcJHckSJAgcfddR5JFJMNqIpJbVpFMJiKJ1q1TSQJCtf5m2WcRR5k1HL6IODauWlzjceDAgQMHDhw4cODAgQMHDhw4cODAceF8qDhKHDhw4MCBAweOqzsaFUeLAwcOHDhw4MCBAwcOHDhw4MDxSnoVx4gDBw4cOHDgwIEDBw4c/5NOxGGbiGNRedhpFHHcRRxnzQrnsPXY0UdzHE8koMNmEYflQcNhlkQc1hcajud1j+v4fQLXrQXO3Hz/gDBli5057cW4LdcaxydCUrNvoRISRAAAAABJRU5ErkJggg==) no-repeat center;
+      background-size:20px 20px;
+    }
+
     .mstreemenu .itemactived>a {
       color: #E61700;
     }
@@ -67,10 +75,8 @@
       padding-right: 20px;
       font-size: 20px;
       color: #fff;
-    }
-
-    .mstreemenu .rooticon:before {
-      content: "\e626";
+      background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAASFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABJhibTAAAAF3RSTlMA+uo92+8u4BwXKPXmIjVFTadjgwu51x7Sf9YAAAGESURBVHja7d3basJAFIbRiVWNNdoc3e//pr0RSiUWhFKc3fW9wWL+CXOXUp7uOA7biNPSl7obT3FrmWt2DPHVtc3hiOjO1e4qIodkGzkkbxE5JFMkkQyxJmmTQOLQpphWlZIxkkjmJovkwbbqkxw3WSSXJoukJyEh+UeSDxISEhISEhISEhISEpJf7o2EhISEhISEhISE5F5yzCLZ1iY5kZCQkJCQkJCQkJCQkJCsdyEhISEhISEhISEhqV2yyyLZk5CQkETENY9kziKZShLJbs4i6UsSSW3beigZQEzLZf/JsZlzOGJM4lg8tTzjOTg4ODg4ODg4ODg4ODg4ODg4OF649yyODQcHBwcHBwfHqzsOWRwtBwcHBwcHBwcHBwcHBwcHxzOdszg6Dg4ODg4ODg4ODg6Ov+mYxFGWJI4xy4+duiSOfRLHo2V1tTnKtO441+ZYP5EKHaVP4ihzk8NRypDEUdomh+P+utfr+P4F3ral4vrDjdEMc6m7frieumV6reP4BHCGs8xkM2Z3AAAAAElFTkSuQmCC) no-repeat center;
+      background-size:20px 20px;
     }
 
     /* 根节点展开样式 */
@@ -80,26 +86,40 @@
       color: #fff;
     }
 
+    .mstreemenu .rootexpand img,.mstreemenu .rootactived img{
+      -webkit-filter:none;
+      -moz-filter: none;
+      -ms-filter: none;
+      -o-filter: none;
+      filter: none;
+    }
+
     /* 根节点展开图标 */
 
-    .mstreemenu .rootexpand>a>.rooticon:before {
-      content: "\e62d";
+    .mstreemenu .rootexpand>a>.rooticon {
+      background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAPFBMVEVHcEz///////////////////////////////////////////////////////////////////////////+PybD1AAAAE3RSTlMAD848OvM3DMj2tXPpU6AFKIrNzKfb7gAAAnZJREFUeNrt3Mu2mzAMhWFxaJLGBGiq93/XTno5J7HBBtne6tr/UDDQt7gMGCDCGGOMMcYYY4wxxhhjjDHGGGOMMcYYi3WdQljm1dnWt3maxtunwfxQVVV9TIMjxhxUVfUext+DddG/Pa5eGGv4t/XyNlG9jE7uqu+ftw6DiDz1S/fRn0M1iAx39Sd5daheZXodOZC8O3SR9xm8JOLQizzUmyTmUJXYEFoSd2j0iiBLEg6VoK4kKcc98tZClqQcGuR2cSRJOnSW5CUBlKQdHyKSekrwJGnH5bp9HEuyv6cPycaW3/KtPhweJHkOfEmuA12S79g89+rJsf+W9uLAlZQ6UCXlDkzJEQei5JgDT3LUgSY57sCSnHEgSc45cCRnHSiS8w4MiYUDQWLj6C+xcvSW2Dn6SiwdPSW2jn4Sa0cvib2jj6SGo4ekjqO9pJajtaSeo62kpqOlpK6jnaS2o5WkvqONpIWjhaSNo76klaO2pJ2jrqSlo6akraOepLWjlqS9Q+T2YS/p4RAZzCV9HPaSXg5rST+HraSnw1LS12En6e2wkvR32EgQHBYSDMd5CYrjrATHcU6C5DgjwXIcl6A5jkrwHMckiI4jEkxHuQTVUSrBdZRJkB0lEmxHvgTdkSvBd+RJPDhyJD4c+xIvjj2JH8e2xJNjU/LTk2NL4stRLkF1lEpwHWUSZEeJBNuRL0F35ErwHXkSD44ciQ/HvsSLY0/ix7Et8eTYkvhypCXeHCmJP0dc4tERk/h0vEu8Ol4lfh1fv574+ZdlrHX680e15Yf4bh2fS3jOg/wfrcIYY4wxxhhjjDHGGGOMMcYYY4wxxpiXfgGSpmecHqUYygAAAABJRU5ErkJggg==) no-repeat center;
+      background-size:20px 20px;
     }
 
     /* 父节点默认图标 */
 
     .mstreemenu .parenticon {
+      display:inline-block;
       padding-right: 5px;
+      background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAQlBMVEVHcEwuM0EuNEEvNEEuNEEfLTwuNEEvNEIuNUEtMkAuM0EuNEAuNEEtM0EuNUEuM0InJzsuM0EuNEExMT0uLjovNUJYRsx3AAAAFXRSTlMANKaU+gXL4O4jRWa5VHiPDYvXFRZilIwhAAADPUlEQVR42u3dW1LjMBCFYcUkEIdAMZnp/W+VRx6IbV36cvqMvAK+KqifxFJ3KT/Pciocz5ssKwlEzn++OCAi1/cLB0TkcSOBiNxXEoicX/5xQESunxcOiMjbBwlE5PVEApGsgfwNSRrIJ5CcgXwKyRjIDUi+QG5CsgVyG5IskHuQVIHchyQK5BEkTSCPIUkCWQHJEcgqSIZAVkLwA1kNQQ9kPQQ8kC0Q6EC2QYAD2QqBDWQ7BDSQHRDMQHZBEAPZCcELZDcELZD9ELBAjkCgAjkGAQrkKAQmkOMQkEAqQDACqQJBCKQSJD6QapDoQOpBggOpCQkNpC4kMJDakLBA6kOCAmkAEbm+k0BEXm8kEP9AmkG8A2kHcQ6kJcQ1kLYQx0BaQ9wCaQ9xCqQDxCeQLhCPQDpB7APpBrEOpB/EOJCeENNA+kIMA+kNMQukP8QokAEQm0CGQCwCGQTRD2QYRDuQcRDlQEZCVAMZC1EMZDRELZDxEKVAAkB0AgkB0QgkCGQ8kDCQ0UDiQAYDiQQZCiQWZCCQaJDuQOJBOgMJCOkLJCSkJ5CgkPZAwkJaA4kLaQwkMqQpkNiQhkCiQ6oDiQ+pDGQCSF0gU0BqApkEchzINJCjQOaBHAQyE2Q3kLkgO4GckPmr9d//sZ9f/s4g4jyPG8k/jZf5b/z8YDU/6hJ/+UDyddBBAOdXpmgBTPJaof1l4nzREx3A+TIULYDzwABaAOehGrQAgh48Gz9uOo8CRgdwHpdFC+A8Uo4WwHntAi2AIFeT9C8kzsti0QGcFyrRAhgJIbl0rBzAMAjJxfwHx6gEj/GHc5xIdAC9ISQjd0iGIJGMpTIOoBuEZHTbg2OYXsT83zlwMjqA1hCSoawkY3JJBhc7B9AMQjLcm2TcesR8XwMIy0oCkiURJGs7SBapkKy2CQ6gGoRk/RPJQi6EACpAWJbWkawRJFnsSLJqk2T5KVgAuyEkC4JJVjYjBrADwrLWnGTRPGwA2yDAAWyBQAewHgIewGrIfS2FAIIfwCpIhgBWQHIE8BiyrKUQQNIEcB+SKIB7kFQB3IYkC+Am5L6WQgDJF8CnkIwBfALJGcDfkGUtDM9ySvzDfwP9WaZ0Go31twAAAABJRU5ErkJggg==) no-repeat center;
+      background-size:8px 8px;
+      width:10px;
+      height:10px;
     }
 
-    .mstreemenu .parenticon:before {
-      content: "\e603";
-    }
+   
 
     /* 父节点展开图标 */
 
-    .mstreemenu .parentexpand>a>.parenticon:before {
-      content: "\e72e";
+    .mstreemenu .parentexpand>a>.parenticon {
+      padding-right: 5px;
+      background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAOVBMVEVHcEwuNUEuM0EvNUImLz4vNEIuNEAuNEIjIyMrMj0vNEEvNEEuNUEvNUIvNEEvM0IvNUIuNUAvNUIb1ms7AAAAEnRSTlMAxzd4EOBY9QQjqJi3iepo1UhKuIhAAAADuElEQVQYGe3AB3akSBAE0AAKKgtP3P+wq52n1cq0WpgymRo+brfb7Xa73RQa+SuMCPwVAjDwFxgAOE/zvMOLhuY1+Je0NK4V/NHRuA6vKppW4T81TavxpqdhPf4XPM3yAe9MNGvCe26mUbPDBwuNWvCRrDRpFXyy0aQNX4w0aMRXgQYFPDDQnAGPOE9jvMNDDY1p8Ji0NKUVfKOjKR2+VdGQCt+raUiNJ3qa0eOZ4GmED3hqohETnnMzTZgdfrDQhAU/kZUGrIIfbTRgww4j1RuxR6B6AbsMVG7APs5TNe+wU0PVGuwlLRVrBbt1VKzDARXVqnBETbVqHNJTqR7HBE+VfMBBE1WacJA4T4W8w2ENFWpwnLRUpxWc0FGdDqdUVKbCOTWVqXFST1V6nBU8FfEBp01UZMJ5bqYas8MFC9VYcIWsVGIVXLJRiQ0XjVRhxEUSqELAZQMVGHCd8yzOO0TQsLgGMUjLwlpBFB0L6xBJxaIqxFKzqBrR9CyoRzzBsxgfENHEYibE5GYWMjtEtbCQBXHJyiJWQWQbi9gQ3cgCRkQngQUEJDAwuwEpOM/MvEMSDTNrkIa0zKoVJNIxqw7JVMyoQjo1M6qRUM9seqQUPDPxAUlNzGRCWm5mFrNDYguzWJCarMxgFSS3MYMNGYxMbkQGEphcQBYDExuQh/NMyjtk0jCpBrlIy4RaQTYdE+qQUcVkKuRUM5kaWfVMpEdewTMJH5DZxCQm5OZmJjA7ZLcwgQX5ycroVkEBG6PbUMTIyEYUIYGRBRQyMKoBpTjPiLxDMQ0jalCOtIymFRTUMZoORVWMpEJZNSOpUVjPKHqUFjwj8AHFTYxgQnlu5mWzgwILL1uggay8aBWosPGiDUqMvGSEEhJ4SYAaAy8YoIfzPM07KNLwtAaaSMuTWoEqHU/qoEzFUypoU/OUGuqMPGGEPoEnBCg08LABGjnPg7yDSg0PaqCTtDykFSjV8ZAOalU8oIJeNQ+ooVjP3XpoFjx38gGqTdxpgm5u5i6zg3ILd1mgnazcYRWot3GHDQaM/NEICwJ/FGDCwB8MsMF5PuUdjGj4VAMrpOUTrcCMjk90MKTitypYUvNbNUzp+Y0etgTPh3yAMRMfmmCNm/nA7GDOwgcW2CMrv1gFBm38YoNJIz8ZYVPgJwFGDfxggFXO8x3vYFbDdxrYJS3ftALDOr7pYFrFVxVsq/mqhnE9/+hhXfB84QPMm/hign1uJmeHX2AhF/wGsq6CX2HbcLvdbrfb7fZX+gd7uOOjSzf8uAAAAABJRU5ErkJggg==) no-repeat center;
+      background-size:8px 8px;
     }
 
     .mstreemenu .rootunexpand {
@@ -117,37 +137,47 @@
       line-height: 60px;
       padding: 0 0 0 20px;
       color: #323232;
-      border-bottom: solid 1px #ccc;
     }
 
     /* 二级*/
 
     .mstreemenu>li>ul>li>a {
-      padding-left: 30px;
+      padding-left: 42px;
     }
 
     /* 三级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
 
     .mstreemenu>li>ul>li>ul>li>a {
-      padding-left: 51px;
+      padding-left: 63px;
     }
 
     /* 四级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
 
     .mstreemenu>li>ul>li>ul>li>ul>li>a {
-      padding-left: 72px;
+      padding-left: 84px;
     }
 
     /* 五级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
 
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>a {
-      padding-left: 93px;
+      padding-left: 105px;
     }
 
     /* 六级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
 
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
-      padding-left: 114px;
+      padding-left: 126px;
+    }
+
+    .gray {
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: url(gray.svg#grayscale);
+      filter:invert(0.2);
+      filter: gray;
     }
   </style>
 </head>
@@ -245,14 +275,15 @@
 
     MSTreeMenu.prototype.makeRootNodeHtml = function (html, node) {
       html.push(this.makeABeforeNodeHtml(html, node));
+      html.push(this.makeRootNodeIconHtml(html,node));
       html.push(this.makeNodeTextHtml(html, node));
-      html.push("<span class='" + _constClass.rootIcon + " iconfont'></span>");
+      html.push("<span class='" + _constClass.rootIcon + "'></span>");
       html.push(this.makeAAfterNodeHtml(html, node));
     };
 
     MSTreeMenu.prototype.makeParentNodeHtml = function (html, node) {
       html.push(this.makeABeforeNodeHtml(html, node));
-      html.push("<span class='" + _constClass.parentIcon + " iconfont'></span>");
+      html.push("<span class='" + _constClass.parentIcon + "'></span>");
       html.push(this.makeNodeTextHtml(html, node));
       html.push(this.makeAAfterNodeHtml(html, node));
     };
@@ -295,6 +326,16 @@
     MSTreeMenu.prototype.makeAAfterNodeHtml = function (html, node) {
       html.push("</a>");
     };
+
+    MSTreeMenu.prototype.makeRootNodeIconHtml = function(html,node){
+      var iconSize = "width:20px;height:20px;margin-right:5px;";
+      // 根节点的图标
+      if (node.iconurl) {
+        html.push("<img src='" + node.iconurl + "' style='vertical-align:middle;" + iconSize + "' class='gray'>");
+      } else {
+        html.push("<div style='display:inline-block;" + iconSize + "'></div>");
+      }
+    }
 
     MSTreeMenu.prototype.checkNodeIsExpand = function (node) {
       if (node.expand && node.expand === true) {
@@ -413,6 +454,7 @@
 
   var data = [{
     "name": "root1",
+    "iconurl": "jbxx.png",
     "children": [{
       "name": "root11",
       "children": [{
@@ -438,12 +480,14 @@
     }]
   }, {
     "name": "root2",
+    "iconurl": "zxxx.png",
     "href": "#",
     "children": [{
       "name": "root21",
     }]
   }, {
     "name": "root3",
+    "iconurl":"zdsx.png",
     "href": "#",
     "children": [{
       "name": "root31",
@@ -452,7 +496,8 @@
     }]
   }, {
     "name": "root4",
-    "href": "#"
+    "href": "#",
+    "iconurl":"ndxx.png"
   }];
 
   new MSTreeMenu({
