@@ -4,7 +4,7 @@
 
 - 组件
   - [模态框组件](/components/Modal/example.html)
-    - [ms模态框](/components/Modal/ms-example.html)
+    - [ms模态框：整个模态框滚动](/components/Modal/ms-example.html)
   - [布局整理](/components/Layout/example.html)
   - [树形菜单](/components/TreeMenu/example.html)
   - [分页插件](/components/Paging/example.html)
