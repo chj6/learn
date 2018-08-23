@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>modal-example</title>
+    <script src="modal.js"></script>
+    <script type="text/javascript">
+    </script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        body.modal-open {
+            position: fixed;
+            width: 100%;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: none;
+            font-size: 14px;
+            overflow:auto;
+        }
+
+        .modal-frame-ms {
+            width: 1170px;
+            position: absolute;
+            top: 100px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            text-align: center;
+            overflow: auto;
+            padding-bottom:100px;
+        }
+
+        .modal-ms-content-warp {
+            background: #fff;
+            padding: 10px;
+            width: 1100px;
+            min-height: 100px;
+            overflow-y: auto;
+            margin:0 auto;
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.10);
+            border-radius: 5px;
+        }
+
+        .modal-ms-frame-close {
+            position: fixed;
+            right: 100px;
+            top: 60px;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all .3s linear;
+            -webkit-transition: all .3s linear;
+            -moz-transition: all .3s linear;
+            -ms-transition: all .3s linear;
+            -o-transition: all .3s linear;
+
+        }
+
+        .modal-ms-frame-close:hover {
+            transform: rotate(180deg);
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div style="padding:20px;">
+        <h4>ms modal example：模态框进行滚动而非内容滚动</h4>
+        <div>
+            modal框高度：<input type="number" id="txtHeight" value="1000" />
+        </div>
+        <br/>
+        <a href="javascript:void(0)" onclick="testOpenModal('modalMs')">打开模态框</a>
+        <!-- <h5>ps：根据20180821设计稿进行开发，图标做了改动，因为设计稿的图标在与内容进行重叠时就看不见了，可参考 https://kr-asia.com/</h5> -->
+    </div>
+    <div style="height:2000px;width:100%;background:lightcyan;line-height:2000px;">占位符，用于出现滚动条</div>
+
+    <div id="modalMs" style="display:none;overflow:auto;" class="modal">
+        <div class="modal-frame-ms">
+            <div class="modal-ms-content-warp" id="modalContent">
+                最小宽度1100px，最小高度200px
+            </div>
+            <div class="modal-ms-frame-close" onclick="testCloseModal('modalMs')">X</div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    function testOpenModal(id) {
+        var s = ModalHelper.init(id);
+        document.querySelector("#modalContent").style.height = document.querySelector("#txtHeight").value + "px";
+        s.open();
+    }
+
+    function testCloseModal(id) {
+        var s = ModalHelper.init(id);
+        s.close();
+    }
+</script>
+
+</html>

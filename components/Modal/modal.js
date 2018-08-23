@@ -32,6 +32,8 @@
     close: function () {
       this.beforeClose();
       if ($(this.id)) {
+        // 还原滚动位置
+        $(this.id).scrollTop="0px";
         $(this.id).style.display = 'none';
       }
     },
