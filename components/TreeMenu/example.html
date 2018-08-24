@@ -91,13 +91,13 @@
       color: #fff;
     }
 
-    .mstreemenu .rootexpand img,
-    .mstreemenu .rootactived img {
-      -webkit-filter: none;
-      -moz-filter: none;
-      -ms-filter: none;
-      -o-filter: none;
-      filter: none;
+    .mstreemenu .rootleftimg{
+      background-position: 0px -5px;
+    }
+
+    .mstreemenu .rootexpand .rootleftimg,
+    .mstreemenu .rootactived .rootleftimg {
+      background-position: 0px -35px;
     }
 
     /* 根节点展开图标 */
@@ -179,29 +179,11 @@
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 126px;
     }
-
-    .gray {
-      -webkit-filter: grayscale(100%);
-      -moz-filter: grayscale(100%);
-      -ms-filter: grayscale(100%);
-      -o-filter: grayscale(100%);
-      filter: grayscale(100%);
-      filter: url(gray.svg#grayscale);
-      filter: invert(0.2);
-      filter: gray;
-    }
   </style>
 </head>
 
 <body>
   <div class="main">
-    <div>
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <filter id="grayscale">
-              <feColorMatrix type="matrix" values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0"/>
-          </filter>
-      </svg>
-    </div>
     <!-- 树形菜单 -->
     <div style="width:270px;overflow:auto;">
       <div id="menuid" style="margin-top:20px;border-radius:6px;min-height:50px;overflow:hidden;"></div>
@@ -346,13 +328,13 @@
     };
 
     MSTreeMenu.prototype.makeRootNodeIconHtml = function (html, node) {
-      var iconSize = "width:20px;height:20px;margin-right:5px;";
+      var iconSize = "display:inline-block;width:20px;height:20px;margin-right:5px;vertical-align:middle;";
       // 根节点的图标
-      if (node.iconurl) {
-        html.push('<svg style="width:20px;height:20px;"><image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+node.iconurl+'" x="0" y="0" width="20" height="20" filter="url("#grayscale")"></image></svg>')
-        // html.push("<img src='" + node.iconurl + "' style='vertical-align:middle;" + iconSize + "' class='gray'>");
+      if (node.iconUrl) {
+        var strIconBg = "background-image:url("+node.iconUrl+");background-repeat:no-repeat;"
+        html.push("<div class='rootleftimg' style='" + iconSize + strIconBg+ "'></div>");
       } else {
-        html.push("<div style='display:inline-block;" + iconSize + "'></div>");
+        html.push("<div style='" + iconSize + "'></div>");
       }
     }
 
@@ -473,7 +455,7 @@
 
   var data = [{
     "name": "root1",
-    "iconurl": "jbxx.png",
+    "iconUrl": "jbxx.png",
     "children": [{
       "name": "root11",
       "children": [{
@@ -499,14 +481,14 @@
     }]
   }, {
     "name": "root2",
-    "iconurl": "zxxx.png",
+    "iconUrl": "zxxx.png",
     "href": "#",
     "children": [{
       "name": "root21",
     }]
   }, {
     "name": "root3",
-    "iconurl": "zdsx.png",
+    "iconUrl": "zdsx.png",
     "href": "#",
     "children": [{
       "name": "root31",
@@ -516,7 +498,7 @@
   }, {
     "name": "root4",
     "href": "#",
-    "iconurl": "ndxx.png"
+    "iconUrl": "ndxx.png"
   }];
 
   new MSTreeMenu({
