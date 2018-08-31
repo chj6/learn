@@ -1,3 +1,5 @@
+# 动态生成require的rjs需要的配置文件 
+### 源码：createBuild.js
 ``` javascript
 var fs = require('fs');
 
@@ -50,4 +52,15 @@ fs.writeFile("msbuild.js", str, function (err) {
     }
     console.log("The build file was build!");
 });
+```
+
+
+### 执行记录
+1. node执行createBuild.js生成msbuild.js
+``` javascript
+node createBuild.js
+```
+2. 调用r.js生成对应的文件
+``` javascript 
+node r.js -o msbuild.js
 ```
