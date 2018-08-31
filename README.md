@@ -12,13 +12,19 @@
 - css基础知识
   - [伪类和伪元素](/css/pseudo-classes-elements.md)
   - [css兼容性记录](/css/browser-diff-record.md)
+  - [height记录](/css/height-record.md)
 
 - js
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
+  - [gulp记录](/js/gulp-record.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
+
+- 工具类
+  - [linux命令](/tools/linux-like-command.md)
+  - [vscode](/tools/vs-code.md)
 
 - [链接地址](/links/links.md)
