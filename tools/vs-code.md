@@ -13,3 +13,8 @@
   
 - Settings Sync  
   利用github同步vscode的设置；[地址](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+
+### 坚决不用
+- Auto-Open Markdown Preview [地址](https://marketplace.visualstudio.com/items?itemName=hnw.vscode-auto-open-markdown-preview)
+  原因：用了之后，提交到github之后，会出现红色点：
+  <pre><span class="cm-invalidchar" title="\u8" aria-label="\u8" cm-text="">•</span></pre>
