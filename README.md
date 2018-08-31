@@ -24,7 +24,7 @@
   - [https配置](/config/https-config.md)
 
 - 工具类
-  - [linux命令](/tools/linux-like-command.md)
+  - [linux命令](/tools/linux-like-command.md)
   - [vscode](/tools/vs-code.md)
 
 - [链接地址](/links/links.md)
