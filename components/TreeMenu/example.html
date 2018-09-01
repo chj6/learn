@@ -188,6 +188,11 @@
     <div style="width:270px;overflow:auto;">
       <div id="menuid" style="margin-top:20px;border-radius:6px;min-height:50px;overflow:hidden;"></div>
     </div>
+    <div>
+      <h3>注意点：</h3>
+      <p>1.根节点左侧图标iconUrl：通过雪碧图修改background-position实现的</p>
+      <p>2.节点的padding-left：默认提供只提供了6个层级，如果需要添加更多的层级，需要添加对应的层级css</p>
+    </div>
   </div>
 </body>
 
@@ -501,6 +506,7 @@
     "iconUrl": "ndxx.png"
   }];
 
+  // 初始化
   new MSTreeMenu({
     data: data,
     warpId: "menuid",
