@@ -16,5 +16,9 @@
 
 ### 坚决不用
 - Auto-Open Markdown Preview [地址](https://marketplace.visualstudio.com/items?itemName=hnw.vscode-auto-open-markdown-preview)
-  原因：用了之后，提交到github之后，会出现红色点：
-  <pre><span class="cm-invalidchar" title="\u8" aria-label="\u8" cm-text="">•</span></pre>
+  原因：用了之后，提交到github之后，会出现红色点，在github上显示为**?**，生成网站时具体的html如下：
+  ``` html
+  <span class="cm-invalidchar" title="\u8" aria-label="\u8" cm-text="">•</span>
+  ```
+  应该是这个插件在某种情况下会自动添加这个符号，已经反馈到插件的issue上了。 
+  [issue反馈地址](https://github.com/hnw/vscode-auto-open-markdown-preview/issues/19)
