@@ -4,11 +4,10 @@
 
 - safari在隐私模式下，localstorage无法使用
 
-- 如果使用a标签去模拟input button，在三击之后会导致文字也会被选中；
+- 如果使用a标签去模拟input button，在三击之后会导致文字也会被选中，应该是a标签和input button的默认行为不一致；
 
 - box-shadow在chrome的iphoneX模拟器上设置阴影的时候，会出现问题；
   ``` javascript
   <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;"></div>
   ```
-  <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;">
-  </div>
+  <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;"></div>
