@@ -22,3 +22,5 @@
   ```
   应该是这个插件在某种情况下会自动添加这个符号，已经反馈到插件的issue上了。 
   [issue反馈地址](https://github.com/hnw/vscode-auto-open-markdown-preview/issues/19)
+  更新于2018/9/27:
+  出现这个特殊的符号，应该是因为vscode的markdown预览自带的问题。[vscode反馈地址](https://github.com/Microsoft/vscode/issues/59521)
