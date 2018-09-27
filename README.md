@@ -21,7 +21,6 @@
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
 
-
 - 配置
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
