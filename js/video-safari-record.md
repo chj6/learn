@@ -5,6 +5,7 @@
    http的状态**206**也是需要注意的，是为了通知客户端这是一个部分内容，buffer在这里就设定了请求的大小是4096字节（4M）(1byte=8bit)，并且通过range指定了对应的范围；
 
    代码如下：
+   
 
    ```java
    public void doSendSafiriVideo(HttpServletRequest request, HttpServletResponse response, String fileName, File file) throws IOException {
