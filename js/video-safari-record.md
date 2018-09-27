@@ -1,8 +1,12 @@
-# Video记录
+#  Video标签在safari的注意点（mac、ios都有这个问题）： 
+   
+   在video标签的src去请求后台服务时，需要对响应头进行特殊处理。因为本身是作为一个流来响应的，所以需要在响应的服务里对后续的持续请求进行特殊处理，主要是设置**content-length、content-range**的响应头；
 
-1. Video标签在safari的注意点（mac、ios都有这个问题）：   
-   在video标签的src去请求后台服务时，需要对响应头进行特殊处理。因为本身是作为一个流来响应的，所以需要在响应的服务里对后续的持续请求进行特殊处理，主要是设置content-length、content-range的响应头；
-   ``` java
+   http的状态**206**也是需要注意的，是为了通知客户端这是一个部分内容，buffer在这里就设定了请求的大小是4096字节（4M）(1byte=8bit)，并且通过range指定了对应的范围；
+
+   代码如下：
+
+   ```java
    public void doSendSafiriVideo(HttpServletRequest request, HttpServletResponse response, String fileName, File file) throws IOException {
 
         RandomAccessFile randomFile = new RandomAccessFile(file, "r");
