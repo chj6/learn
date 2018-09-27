@@ -15,9 +15,12 @@
   - [height记录](/css/height-record.md)
 
 - js
+  - [gulp记录](/js/gulp-record.md)  
+  - [Vue记录](/js/vue/vue-record.md) 
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
-  - [gulp记录](/js/gulp-record.md)
+  - [Video在safari无法播放的记录](/js/video-safari-record.md)
+
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
