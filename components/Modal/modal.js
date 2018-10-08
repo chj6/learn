@@ -1,4 +1,5 @@
 (function (window, undefined) {
+  console.warn("用到了classList,所以ie8,9不支持！")
   var $ = function (id) {
     return document.getElementById(id);
   };
