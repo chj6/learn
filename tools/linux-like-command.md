@@ -10,5 +10,4 @@
   ```
   [chown参考文档](http://man.linuxde.net/chmod)
 
-
- 
+- 在终端中退出文件编辑时，需要先按ESC，然后在运行:wq保存并推出；
