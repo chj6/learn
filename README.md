@@ -20,6 +20,7 @@
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
+  - [网页在平板上面的缩放](/js/page-in-pad-scale.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
