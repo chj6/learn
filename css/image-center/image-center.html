@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片居中</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            padding-top:5px;
+        }
+
+        pre {
+            background: black;
+            color: white;
+        }
+
+        .img-wrap {
+            position: relative;
+            min-width: 1000px;
+            width: 100%;
+            max-width: 2000px;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .img-wrap img {
+            width: 2000px;
+            position: absolute;
+            left: 50%;
+            margin-left: -1000px;
+        }
+
+        .bg-wrap {
+            min-width: 1000px;
+            width: 100%;
+            max-width: 2000px;
+            height: 500px;
+            overflow: hidden;
+            background: url(demo.jpg) no-repeat center;
+            background-size: cover;
+            /* object-fit: cover; */
+        }
+    </style>
+</head>
+
+<body>
+    <b>主要思路：图片100%显示，然后用外面的容器对图片进行遮挡。（PS：下面的做法都会对图片进行裁剪）</b>
+    <p>1.布局：div + img元素；</p>
+    <p>兼容性好，但是图片要设置个相对比较大的值，图片本身两边留白，内容处于中间，适用于banner；</p>
+    <pre>
+        .img-wrap {
+            position: relative;
+            min-width: 1000px;
+            width: 100%;
+            max-width: 2000px;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .img-wrap img {
+            width: 2000px;
+            position: absolute;
+            left: 50%;
+            margin-left: -1000px;
+        }
+    </pre>
+    <div class="img-wrap">
+        <img src="demo.jpg" alt="">
+    </div>
+    <br>
+    <hr>
+    <p>2.布局：div + background-image属性（background-size，object-fit用其中一个属性即可）；</p>
+    <p>布局简单，但是对于ie的兼容性不好，特别是object-fit对所有ie都不兼容（查看兼容时间：2018-10-14）；</p>
+    <div class="bg-wrap"></div>
+    <pre>
+        .bg-wrap{
+            min-width: 1000px;
+            width: 100%;
+            max-width: 2000px;
+            height: 500px;
+            overflow: hidden;
+            background:url(demo.jpg) no-repeat center;
+            background-size:cover;
+            /* object-fit: cover; */
+        }
+    </pre>
+    <br>
+    <hr>
+</body>
+
+</html>
