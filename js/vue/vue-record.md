@@ -18,7 +18,7 @@
   })();
 </script>
 ```
-2.在src的main.js中添加
+2.在src的main.js中添加，**router的`beforeEach`一定要放在`new Vue`的前面，否则会导致第一次无法进入router的beforeEach**
 ``` javascript
 // 百度统计
 router.beforeEach((to, from, next) => {
@@ -27,4 +27,16 @@ router.beforeEach((to, from, next) => {
   }
   next();
 });
+
+/* eslint-disable no-new */
+new Vue({
+  el: "#app",
+  router,
+  store,
+  components: {
+    App
+  },
+  template: "<App/>"
+});
+
 ```
