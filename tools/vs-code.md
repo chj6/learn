@@ -14,6 +14,34 @@
 - Settings Sync  
   利用github同步vscode的设置；[地址](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
 
+- Beautify
+  代码格式化；[地址](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)   
+  添加对vue文件的支持配置（settings.json）：
+  ```
+  "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json",
+                "jsonc"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautifyrc"
+            ]
+        },
+        "css": [
+            "css",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "vue"
+        ]
+    }
+  ```
+
 ### 坚决不用
 - ~~Auto-Open Markdown Preview [地址](https://marketplace.visualstudio.com/items?itemName=hnw.vscode-auto-open-markdown-preview)~~
   原因：用了之后，提交到github之后，会出现红色点，在github上显示为**?**，生成网站时具体的html如下：
