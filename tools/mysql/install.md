@@ -13,7 +13,7 @@
 `mysqladmin -u root password 'yourpassword'`
 
 ### 5.设置root可以远程登陆  
-  默认mysql是无法使用**MySqlWorkbench**远程登陆的，需要修改root的host值
+  默认mysql是无法使用**MySqlWorkbench**远程登陆的，需要修改root的host值
 ```
 use mysql
 select t.host from user t where t.user='root';
