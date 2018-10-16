@@ -31,5 +31,7 @@
   - [linux命令](/tools/linux-like-command.md)
   - [vscode](/tools/vs-code.md)
   - [git](/tools/git.md)
+  - mysql
+     - [安装记录](/tools/mysql/install.md)
 
 - [链接地址](/links/links.md)
