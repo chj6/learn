@@ -17,7 +17,9 @@
 
 - js
   - [gulp记录](/js/gulp-record.md)  
-  - [Vue记录](/js/vue/vue-record.md) 
+  - Vue
+    - [Vue基础记录](/js/vue/vue-base-record.md) 
+    - [Vue百度统计](/js/vue/vue-baidu-tongji.md)
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
@@ -32,6 +34,6 @@
   - [vscode](/tools/vs-code.md)
   - [git](/tools/git.md)
   - mysql
-     - [安装记录](/tools/mysql/install.md)
+    - [安装记录](/tools/mysql/install.md)
 
 - [链接地址](/links/links.md)
