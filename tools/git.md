@@ -9,3 +9,7 @@
   git tag -a v1.0 -m "v1.0版本发布"
   git push origin v1.0
   ```
+
+- git fix分支合并master
+  先切换到master分支上，执行：`git merge fix`，然后再推送到远程上：`git push origin master`即可
+  
