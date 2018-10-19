@@ -280,9 +280,9 @@
 
     MSTreeMenu.prototype.makeRootNodeHtml = function (html, node) {
       html.push(this.makeABeforeNodeHtml(html, node));
+      html.push("<span class='" + _constClass.rootIcon + "'></span>");
       html.push(this.makeRootNodeIconHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
-      html.push("<span class='" + _constClass.rootIcon + "'></span>");
       html.push(this.makeAAfterNodeHtml(html, node));
     };
 
