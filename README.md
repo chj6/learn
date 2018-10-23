@@ -25,6 +25,9 @@
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
   - [网页在平板上面的缩放](/js/page-in-pad-scale.md)
 
+- java
+  - [bug记录](/java/bug-record.md)
+
 - 配置
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
