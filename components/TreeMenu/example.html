@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>树形菜单</title>
+
   <style>
     body {
       background: #ccc;
@@ -67,7 +68,6 @@
     }
 
     /* 根节点默认图标 */
-
     .mstreemenu .rooticon {
       float: right;
       width: 30px;
@@ -85,7 +85,6 @@
     }
 
     /* 根节点展开样式 */
-
     .mstreemenu .rootexpand>a {
       background: #E61700;
       color: #fff;
@@ -101,14 +100,12 @@
     }
 
     /* 根节点展开图标 */
-
     .mstreemenu .rootexpand>a>.rooticon {
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAPFBMVEVHcEz///////////////////////////////////////////////////////////////////////////+PybD1AAAAE3RSTlMAD848OvM3DMj2tXPpU6AFKIrNzKfb7gAAAnZJREFUeNrt3Mu2mzAMhWFxaJLGBGiq93/XTno5J7HBBtne6tr/UDDQt7gMGCDCGGOMMcYYY4wxxhhjjDHGGGOMMcYYi3WdQljm1dnWt3maxtunwfxQVVV9TIMjxhxUVfUext+DddG/Pa5eGGv4t/XyNlG9jE7uqu+ftw6DiDz1S/fRn0M1iAx39Sd5daheZXodOZC8O3SR9xm8JOLQizzUmyTmUJXYEFoSd2j0iiBLEg6VoK4kKcc98tZClqQcGuR2cSRJOnSW5CUBlKQdHyKSekrwJGnH5bp9HEuyv6cPycaW3/KtPhweJHkOfEmuA12S79g89+rJsf+W9uLAlZQ6UCXlDkzJEQei5JgDT3LUgSY57sCSnHEgSc45cCRnHSiS8w4MiYUDQWLj6C+xcvSW2Dn6SiwdPSW2jn4Sa0cvib2jj6SGo4ekjqO9pJajtaSeo62kpqOlpK6jnaS2o5WkvqONpIWjhaSNo76klaO2pJ2jrqSlo6akraOepLWjlqS9Q+T2YS/p4RAZzCV9HPaSXg5rST+HraSnw1LS12En6e2wkvR32EgQHBYSDMd5CYrjrATHcU6C5DgjwXIcl6A5jkrwHMckiI4jEkxHuQTVUSrBdZRJkB0lEmxHvgTdkSvBd+RJPDhyJD4c+xIvjj2JH8e2xJNjU/LTk2NL4stRLkF1lEpwHWUSZEeJBNuRL0F35ErwHXkSD44ciQ/HvsSLY0/ix7Et8eTYkvhypCXeHCmJP0dc4tERk/h0vEu8Ol4lfh1fv574+ZdlrHX680e15Yf4bh2fS3jOg/wfrcIYY4wxxhhjjDHGGGOMMcYYY4wxxpiXfgGSpmecHqUYygAAAABJRU5ErkJggg==) no-repeat center;
       background-size: 15px 15px;
     }
 
     /* 父节点默认图标 */
-
     .mstreemenu .parenticon {
       display: inline-block;
       padding-right: 5px;
@@ -123,10 +120,7 @@
       -o-transition: all .3s ease-in 0s;
     }
 
-
-
     /* 父节点展开图标 */
-
     .mstreemenu .parentexpand>a>.parenticon {
       padding-right: 5px;
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAOVBMVEVHcEwuNUEuM0EvNUImLz4vNEIuNEAuNEIjIyMrMj0vNEEvNEEuNUEvNUIvNEEvM0IvNUIuNUAvNUIb1ms7AAAAEnRSTlMAxzd4EOBY9QQjqJi3iepo1UhKuIhAAAADuElEQVQYGe3AB3akSBAE0AAKKgtP3P+wq52n1cq0WpgymRo+brfb7Xa73RQa+SuMCPwVAjDwFxgAOE/zvMOLhuY1+Je0NK4V/NHRuA6vKppW4T81TavxpqdhPf4XPM3yAe9MNGvCe26mUbPDBwuNWvCRrDRpFXyy0aQNX4w0aMRXgQYFPDDQnAGPOE9jvMNDDY1p8Ji0NKUVfKOjKR2+VdGQCt+raUiNJ3qa0eOZ4GmED3hqohETnnMzTZgdfrDQhAU/kZUGrIIfbTRgww4j1RuxR6B6AbsMVG7APs5TNe+wU0PVGuwlLRVrBbt1VKzDARXVqnBETbVqHNJTqR7HBE+VfMBBE1WacJA4T4W8w2ENFWpwnLRUpxWc0FGdDqdUVKbCOTWVqXFST1V6nBU8FfEBp01UZMJ5bqYas8MFC9VYcIWsVGIVXLJRiQ0XjVRhxEUSqELAZQMVGHCd8yzOO0TQsLgGMUjLwlpBFB0L6xBJxaIqxFKzqBrR9CyoRzzBsxgfENHEYibE5GYWMjtEtbCQBXHJyiJWQWQbi9gQ3cgCRkQngQUEJDAwuwEpOM/MvEMSDTNrkIa0zKoVJNIxqw7JVMyoQjo1M6qRUM9seqQUPDPxAUlNzGRCWm5mFrNDYguzWJCarMxgFSS3MYMNGYxMbkQGEphcQBYDExuQh/NMyjtk0jCpBrlIy4RaQTYdE+qQUcVkKuRUM5kaWfVMpEdewTMJH5DZxCQm5OZmJjA7ZLcwgQX5ycroVkEBG6PbUMTIyEYUIYGRBRQyMKoBpTjPiLxDMQ0jalCOtIymFRTUMZoORVWMpEJZNSOpUVjPKHqUFjwj8AHFTYxgQnlu5mWzgwILL1uggay8aBWosPGiDUqMvGSEEhJ4SYAaAy8YoIfzPM07KNLwtAaaSMuTWoEqHU/qoEzFUypoU/OUGuqMPGGEPoEnBCg08LABGjnPg7yDSg0PaqCTtDykFSjV8ZAOalU8oIJeNQ+ooVjP3XpoFjx38gGqTdxpgm5u5i6zg3ILd1mgnazcYRWot3GHDQaM/NEICwJ/FGDCwB8MsMF5PuUdjGj4VAMrpOUTrcCMjk90MKTitypYUvNbNUzp+Y0etgTPh3yAMRMfmmCNm/nA7GDOwgcW2CMrv1gFBm38YoNJIz8ZYVPgJwFGDfxggFXO8x3vYFbDdxrYJS3ftALDOr7pYFrFVxVsq/mqhnE9/+hhXfB84QPMm/hign1uJmeHX2AhF/wGsq6CX2HbcLvdbrfb7fZX+gd7uOOjSzf8uAAAAABJRU5ErkJggg==) no-repeat center;
@@ -142,7 +136,6 @@
     }
 
     /* 一级 */
-
     .mstreemenu>li>a {
       height: 60px;
       line-height: 60px;
@@ -151,31 +144,26 @@
     }
 
     /* 二级*/
-
     .mstreemenu>li>ul>li>a {
       padding-left: 42px;
     }
 
     /* 三级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
-
     .mstreemenu>li>ul>li>ul>li>a {
       padding-left: 63px;
     }
 
     /* 四级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
-
     .mstreemenu>li>ul>li>ul>li>ul>li>a {
       padding-left: 84px;
     }
 
     /* 五级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
-
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 105px;
     }
 
     /* 六级：递增的计算规则，根据字体图片的大小和padding-left值计算大小  */
-
     .mstreemenu>li>ul>li>ul>li>ul>li>ul>li>ul>li>a {
       padding-left: 126px;
     }
@@ -199,8 +187,19 @@
 </html>
 
 <script>
-  (function (window, undefined) {
+  console.warn("不支持ie8!!! 如果要支持需要引入ieBetter!!! 并且需要重写background的base64图标样式!!!");
 
+  // 为了对ie8进行处理
+  function getNextElement(element) {
+    var ele = element;
+    if (ele.nextElementSibling) return ele.nextElementSibling;
+    do {
+      ele = ele.nextSibling;
+    } while (ele && ele.nodeType !== 1);
+    return ele;
+  }
+
+  (function (window, undefined) {
     // 如果需要修改样式，只能通过外部覆盖样式即可，不能修改类名
     var _constClass = {
       rootUl: 'mstreemenu',
@@ -217,7 +216,6 @@
       itemClass: 'item',
       itemActived: 'itemactived',
     }
-
     var defaultOps = {
       aTarget: '_self',
     };
@@ -231,7 +229,6 @@
       this.init();
       _handler.onClickNode(this.ops.warpId);
     }
-
     MSTreeMenu.prototype.init = function () {
       var _ops = this.ops;
       var id = _ops.warpId;
@@ -243,7 +240,6 @@
       html.push("</ul>");
       document.getElementById(id).innerHTML = html.join("");
     };
-
     MSTreeMenu.prototype.makeHtml = function (html, data, rootIndex) {
       data = data || [];
       for (var i = 0; i < data.length; i++) {
@@ -277,22 +273,19 @@
         }
       }
     };
-
     MSTreeMenu.prototype.makeRootNodeHtml = function (html, node) {
       html.push(this.makeABeforeNodeHtml(html, node));
+      html.push("<span class='" + _constClass.rootIcon + "'></span>");
       html.push(this.makeRootNodeIconHtml(html, node));
       html.push(this.makeNodeTextHtml(html, node));
-      html.push("<span class='" + _constClass.rootIcon + "'></span>");
       html.push(this.makeAAfterNodeHtml(html, node));
     };
-
     MSTreeMenu.prototype.makeParentNodeHtml = function (html, node) {
       html.push(this.makeABeforeNodeHtml(html, node));
       html.push("<span class='" + _constClass.parentIcon + "'></span>");
       html.push(this.makeNodeTextHtml(html, node));
       html.push(this.makeAAfterNodeHtml(html, node));
     };
-
     MSTreeMenu.prototype.makeChildrenUlBeforeNodeHtml = function (html, node, isRoot) {
       var ulClass = "";
       if (this.checkNodeIsExpand(node)) {
@@ -302,11 +295,9 @@
       }
       html.push("<ul class='" + ulClass + "'>");
     };
-
     MSTreeMenu.prototype.makeChildrenUlAfterNodeHtml = function (html, node) {
       html.push("</ul>");
     };
-
     MSTreeMenu.prototype.makeItemNodeHtml = function (html, node) {
       var itemClass = _constClass.itemClass;
       var liActived = (node.id === this.ops.activedId || node.actived) ? _constClass.itemActived : "";
@@ -316,22 +307,18 @@
       html.push(this.makeAAfterNodeHtml(html, node));
       html.push("</li>");
     };
-
     MSTreeMenu.prototype.makeNodeTextHtml = function (html, node) {
       html.push("<span>" + node.name + "</span>");
     };
-
     MSTreeMenu.prototype.makeABeforeNodeHtml = function (html, node) {
       var _ops = this.ops;
       var href = node.href;
       var target = node.target || _ops.aTarget;
       html.push("<a " + (_helper.checkHrefIsValid(href) ? ("href=" + href) : "") + " target=" + target + ">");
     };
-
     MSTreeMenu.prototype.makeAAfterNodeHtml = function (html, node) {
       html.push("</a>");
     };
-
     MSTreeMenu.prototype.makeRootNodeIconHtml = function (html, node) {
       var iconSize = "display:inline-block;width:20px;height:20px;margin-right:5px;vertical-align:middle;";
       // 根节点的图标
@@ -342,7 +329,6 @@
         html.push("<div style='" + iconSize + "'></div>");
       }
     }
-
     MSTreeMenu.prototype.checkNodeIsExpand = function (node) {
       if (node.expand && node.expand === true) {
         return true;
@@ -364,7 +350,6 @@
       }
       return false;
     }
-
     var _handler = {
       onClickNode: function (warpId) {
         var _that = this;
@@ -374,64 +359,33 @@
           if (tmpNode.getAttribute("href") && tmpNode.getAttribute("href") !== "#") {
             //直接跳转即可
           } else {
-            if (tmpNode.addEventListener) {
-              tmpNode.addEventListener("click", function (e) {
-                var parentLiEle = this.parentElement;
-                if (_helper.hasClass(parentLiEle, _constClass.rootItem)) { // root节点
-                  _helper.removeClass(parentLiEle, _constClass.rootActived);
-                  var ulEle = this.nextElementSibling;
-                  if (ulEle) {
-                    _helper.toggleClass(ulEle, _constClass.rootExpand, _constClass.rootUnExpand);
-                    _helper.toggleClass(parentLiEle, _constClass.rootExpand);
-                  } else {
-                    _that.removeAllNodeActived(warpId);
-                    _helper.addClass(parentLiEle, _constClass.rootActived);
-                  }
-                } else if (_helper.hasClass(parentLiEle, _constClass.parentItem)) { // 有子节点的父节点
-                  _helper.removeClass(parentLiEle, _constClass.parentActived);
-                  var ulEle = this.nextElementSibling;
-                  if (ulEle) {
-                    _helper.toggleClass(ulEle, _constClass.parentExpand, _constClass.parentUnExpand);
-                    _helper.toggleClass(parentLiEle, _constClass.parentExpand);
-                  } else {
-                    _that.removeAllNodeActived(warpId);
-                    _helper.addClass(parentLiEle, _constClass.parentActived);
-                  }
-                } else { // 正常节点
+            tmpNode.addEventListener("click", function (e) {
+              var parentLiEle = this.parentElement;
+              if (_helper.hasClass(parentLiEle, _constClass.rootItem)) { // root节点
+                _helper.removeClass(parentLiEle, _constClass.rootActived);
+                var ulEle = this.nextElementSibling ? this.nextElementSibling : getNextElement(this);
+                if (ulEle) {
+                  _helper.toggleClass(ulEle, _constClass.rootExpand, _constClass.rootUnExpand);
+                  _helper.toggleClass(parentLiEle, _constClass.rootExpand);
+                } else {
                   _that.removeAllNodeActived(warpId);
-                  _helper.addClass(parentLiEle, _constClass.itemActived);
+                  _helper.addClass(parentLiEle, _constClass.rootActived);
                 }
-              })
-
-            } else {
-              tmpNode.attachEvent("click", function (e) {
-                var parentLiEle = this.parentElement;
-                if (_helper.hasClass(parentLiEle, _constClass.rootItem)) { // root节点
-                  _helper.removeClass(parentLiEle, _constClass.rootActived);
-                  var ulEle = this.nextElementSibling;
-                  if (ulEle) {
-                    _helper.toggleClass(ulEle, _constClass.rootExpand, _constClass.rootUnExpand);
-                    _helper.toggleClass(parentLiEle, _constClass.rootExpand);
-                  } else {
-                    _that.removeAllNodeActived(warpId);
-                    _helper.addClass(parentLiEle, _constClass.rootActived);
-                  }
-                } else if (_helper.hasClass(parentLiEle, _constClass.parentItem)) { // 有子节点的父节点
-                  _helper.removeClass(parentLiEle, _constClass.parentActived);
-                  var ulEle = this.nextElementSibling;
-                  if (ulEle) {
-                    _helper.toggleClass(ulEle, _constClass.parentExpand, _constClass.parentUnExpand);
-                    _helper.toggleClass(parentLiEle, _constClass.parentExpand);
-                  } else {
-                    _that.removeAllNodeActived(warpId);
-                    _helper.addClass(parentLiEle, _constClass.parentActived);
-                  }
-                } else { // 正常节点
+              } else if (_helper.hasClass(parentLiEle, _constClass.parentItem)) { // 有子节点的父节点
+                _helper.removeClass(parentLiEle, _constClass.parentActived);
+                var ulEle = this.nextElementSibling ? this.nextElementSibling : getNextElement(this);
+                if (ulEle) {
+                  _helper.toggleClass(ulEle, _constClass.parentExpand, _constClass.parentUnExpand);
+                  _helper.toggleClass(parentLiEle, _constClass.parentExpand);
+                } else {
                   _that.removeAllNodeActived(warpId);
-                  _helper.addClass(parentLiEle, _constClass.itemActived);
+                  _helper.addClass(parentLiEle, _constClass.parentActived);
                 }
-              })
-            }
+              } else { // 正常节点
+                _that.removeAllNodeActived(warpId);
+                _helper.addClass(parentLiEle, _constClass.itemActived);
+              }
+            })
           }
         }
       },
@@ -443,7 +397,6 @@
         }
       }
     }
-
     var _helper = {
       hasClass: function (el, className) {
         var reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
@@ -485,10 +438,8 @@
         return true;
       }
     };
-
     window.MSTreeMenu = MSTreeMenu;
   }(window));
-
   var data = [{
     "name": "root1",
     "iconUrl": "jbxx.png",
@@ -536,7 +487,6 @@
     "href": "#",
     "iconUrl": "ndxx.png"
   }];
-
   // 初始化
   new MSTreeMenu({
     data: data,
