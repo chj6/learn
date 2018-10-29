@@ -24,6 +24,7 @@
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
   - [网页在平板上面的缩放](/js/page-in-pad-scale.md)
+  - [sessionstroage共享问题](/js/sessionstorage-share.md)
 
 - java
   - [bug记录](/java/bug-record.md)

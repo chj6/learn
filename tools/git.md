@@ -12,4 +12,10 @@
 
 - git fix分支合并master   
   先切换到master分支上，执行：`git merge fix`，然后再推送到远程上：`git push origin master`即可
+
+- ignore无效
+  ```
+  git rm -r --cached ./config/local-path-config.json
+  git commit -m '去除localpathconfig的跟踪'
+  ```
   
