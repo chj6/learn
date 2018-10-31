@@ -6,3 +6,5 @@
 
 - [Loading样式](https://loading.io/)：可以自定义loading的效果
 
+- [Spring项目生成器](https://start.spring.io/)：可以定制生成Spring项目，入门学习利器
+
