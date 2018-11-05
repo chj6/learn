@@ -36,3 +36,16 @@ new Router({
   }]
 );
 ```
+
+## 低版本的浏览器处理
+``` javascript
+npm install --save-dev babel-polyfill  
+// 然后在/build/webpack.base.config.js（不同的脚手架生成的webpack配置文件路径和名称可能不一致）
+const webpackConfig = {
+  context: path.resolve(__dirname, '../'),
+  entry: {
+    // app: './src/main.js' 替换成下面的
+    app: ['babel-polyfill', './src/main.js']
+  }
+}
+```
