@@ -38,6 +38,7 @@ new Router({
 ```
 
 ## 低版本的浏览器处理
+报错信息：`Vuex requires a Promise polyfill in this browser`，因为vuex用了比较新的api所以要引入polyfill处理一下，因为现在还有很多低版本的浏览器内核不兼容这些方法或属性。
 ``` javascript
 npm install --save-dev babel-polyfill  
 // 然后在/build/webpack.base.config.js（不同的脚手架生成的webpack配置文件路径和名称可能不一致）
