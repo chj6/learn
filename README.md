@@ -29,6 +29,9 @@
 - java
   - [bug记录](/java/bug-record.md)
 
+- python
+  - [安装记录](/python/install-in-mac.md)
+
 - 配置
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
