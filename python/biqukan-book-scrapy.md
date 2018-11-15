@@ -10,7 +10,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # 输入参数定义
 book_url = 'https://www.biqukan.com/2_2822/'
-book_name = 'test'
+book_name = 'xzhdx'
 break_url = ''  # 中断处的url，如果为空，则从头开始爬取
 ajax_repeat_count = 10  # 最大重试次数不能超过9999
 
@@ -58,7 +58,7 @@ def get_book_dir(url):
             if dt_num == 2:
                 durls = n.find_all('a')[0]
                 books_info['name'] = (durls.get_text())
-                books_info['url'] = 'http://www.biqukan.com' + durls.get('href')
+                books_info['url'] = 'https://www.biqukan.com' + durls.get('href')
                 books_dir.append(books_info)
     return books_dir
 
@@ -68,7 +68,6 @@ def get_charpter_text(curl):
     text = parse(curl).find('div', class_='showtxt')
     if text:
         cont = text.get_text()
-        # cont = [str(cont).strip().replace('\r \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0', '').replace('\u3000\u3000', '')]
         return cont
     else:
         return ''
@@ -81,6 +80,7 @@ def get_book(burl):
     if not book:
         return book
     start = break_url == ''  # 判断是否从中断处爬取，否则直接从头开始
+    errors = []
     # 内容
     for d in book:
         curl = d['url']
@@ -91,18 +91,17 @@ def get_book(burl):
             if start:
                 print(datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S') + ":" + title)
                 ctext = get_charpter_text(curl)
-                d['text'] = ctext
                 with open("{}.txt".format(book_name), "a") as myfile:
                     myfile.write("【{0}】\n {1} \n".format(d['name'], ctext))
-                print()
         except Exception as err:
-            d['text'] = 'get failed'
+            errors['text'] = "【{0}】\n {1} \n".format(d['name'], 'get failed')
             print(err)
-    return book
+    return errors
 
 
 if __name__ == '__main__':
     # 这里我先爬取一本书的，需要多本书，那就再加个爬取首页所有书籍的url就可以
     book = get_book(book_url)
     print(book)
+
 ```
