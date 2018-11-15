@@ -1,7 +1,6 @@
 ```python
 # -*- coding: utf-8 -*-
 import datetime
-import re
 import ssl
 import urllib.request
 
@@ -10,8 +9,8 @@ import bs4
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # 输入参数定义
-book_url = 'https://www.biqukan.com/0_973/'
-book_name = '三界独尊'
+book_url = 'https://www.biqukan.com/2_2822/'
+book_name = 'test'
 break_url = ''  # 中断处的url，如果为空，则从头开始爬取
 ajax_repeat_count = 10  # 最大重试次数不能超过9999
 
@@ -26,14 +25,12 @@ def get_html(url):
     while ajax_count < ajax_repeat_count:
         try:
             request = urllib.request.Request(url, headers=headers)
-            response = urllib.request.urlopen(request, None, 3)
+            response = urllib.request.urlopen(request, None, 10)
             html = response.read()
             ajax_count = 9999
-        except:
+        except Exception as e:
             ajax_count += 1
-            print('请求{}失败，正在尝试再次请求！'.format(url))
-        else:
-            break
+            print('请求{}失败，正在尝试再次请求！错误信息：{e}'.format(url, str(e)))
     return html
 
 
@@ -72,10 +69,7 @@ def get_charpter_text(curl):
     if text:
         cont = text.get_text()
         # cont = [str(cont).strip().replace('\r \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0', '').replace('\u3000\u3000', '')]
-        cont = [str(cont)]
-        c = " ".join(cont)
-        ctext = re.findall(r'^.*?html', c)
-        return ctext
+        return cont
     else:
         return ''
 
@@ -99,7 +93,7 @@ def get_book(burl):
                 ctext = get_charpter_text(curl)
                 d['text'] = ctext
                 with open("{}.txt".format(book_name), "a") as myfile:
-                    myfile.write(title + "".join(ctext))
+                    myfile.write("【{0}】\n {1} \n".format(d['name'], ctext))
                 print()
         except Exception as err:
             d['text'] = 'get failed'
@@ -111,5 +105,4 @@ if __name__ == '__main__':
     # 这里我先爬取一本书的，需要多本书，那就再加个爬取首页所有书籍的url就可以
     book = get_book(book_url)
     print(book)
-
 ```
