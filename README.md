@@ -34,6 +34,7 @@
   - [生成缩略图](/python/image-thumb.md)
   - [txt分割](/python/txt-split.md)
   - [小说抓取](/python/biqukan-book-scrapy.md)
+  - [小说抓取-多线程版](/python/biqukan-book-scrapy-multi-thread.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
