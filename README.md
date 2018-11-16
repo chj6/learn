@@ -42,6 +42,7 @@
 
 - 工具类
   - [linux命令](/tools/linux-like-command.md)
+  - [ssh免密登陆](/tools/ssh-login.md)
   - [vscode](/tools/vs-code.md)
   - [git](/tools/git.md)
   - mysql
