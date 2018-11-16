@@ -1,5 +1,6 @@
 ```python
 # -*- coding: utf-8 -*-
+import os
 import datetime
 import ssl
 import threading
@@ -10,11 +11,11 @@ import bs4
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # 输入参数定义
-book_url = 'https://www.biqukan.com/1_1408/'
-book_name = 'fjwd'
+book_url = 'https://www.biqukan.com/0_973/'
+book_name = 'sjzz'
 break_url = ''  # 中断处的url，如果为空，则从头开始爬取
 ajax_repeat_count = 10  # 最大重试次数不能超过9999
-thread_count = 6
+thread_count = 20
 
 
 # 模拟浏览器访问url并获取页面内容（即爬取源码）
@@ -111,7 +112,7 @@ def multi_thread_get_book(dir_list):
             if (i + 1) == thread_count:
                 _filter = _each_count * i <= j
             else:
-                _filter = _each_count * i < j <= _each_count * (i + 1)
+                _filter = _each_count * i <= j < _each_count * (i + 1)
             if _filter:
                 _dirs_list[i].append(dirs[j])
 
@@ -128,8 +129,10 @@ def multi_thread_get_book(dir_list):
 
     with open(book_name+".txt", 'a+') as rst_file:
         for i in range(thread_count):
-            with open("{}{}.txt".format(book_name, str(i + 1))) as each_file:
+            _each_file_name = "{}{}.txt".format(book_name, str(i + 1))
+            with open(_each_file_name) as each_file:
                 rst_file.write(each_file.read())
+                os.remove(_each_file_name)
 
 
 # 入口函数
@@ -138,5 +141,5 @@ if __name__ == '__main__':
     if len(dirs) >= thread_count:
         multi_thread_get_book(dirs)
     else:
-        get_book(dirs, "all")
+        get_book(dirs, "")
 ```
