@@ -30,12 +30,15 @@
   - [bug记录](/java/bug-record.md)
 
 - python
-  - [安装记录-mac](/python/install-in-mac.md)
-  - [安装记录-centos](/python/install-in-centos.md)
-  - [生成缩略图](/python/image-thumb.md)
-  - [txt分割](/python/txt-split.md)
-  - [小说抓取](/python/biqukan-book-scrapy.md)
-  - [小说抓取-多线程版](/python/biqukan-book-scrapy-multi-thread.md)
+  - 安装
+    - [安装记录-mac](/python/install-in-mac.md)
+    - [安装记录-centos](/python/install-in-centos.md)
+  - 工具
+    - [生成缩略图](/python/image-thumb.md)
+    - [txt分割](/python/txt-split.md)
+  - 爬虫
+    - [小说抓取](/python/biqukan-book-scrapy.md)
+    - [小说抓取-多线程版](/python/biqukan-book-scrapy-multi-thread.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
