@@ -33,6 +33,7 @@
   - 安装
     - [安装记录-mac](/python/install/install-in-mac.md)
     - [安装记录-centos](/python/install/install-in-centos.md)
+    - [scrapy安装记录-windows](/python/install/scrapy-install-in-windows.md)
   - 工具
     - [生成缩略图](/python/tools/image-thumb.md)
     - [txt分割](/python/tools/txt-split.md)
