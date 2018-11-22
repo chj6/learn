@@ -10,9 +10,9 @@
   - [分页插件](/components/Paging/example.html)
 
 - css基础知识
+  - [知识点记录](/css/knowledge-point-record.md)
   - [伪类和伪元素](/css/pseudo-classes-elements.md)
   - [css兼容性记录](/css/browser-diff-record.md)
-  - [height记录](/css/height-record.md)
   - [图片居中](/css/image-center/image-center.html)
 
 - js
