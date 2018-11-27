@@ -40,6 +40,7 @@
   - 爬虫
     - [小说抓取](/python/scrapy/biqukan-book-scrapy.md)
     - [小说抓取-多线程版](/python/scrapy/biqukan-book-scrapy-multi-thread.md)
+    - [pexels流行图片抓取-scrapy版](/python/scrapy/pexels-popular-photos-scrapy.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
