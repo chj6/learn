@@ -41,7 +41,6 @@ class PexelsspiderSpider(scrapy.Spider):
     name = 'pexelsSpider'
     allowed_domains = ['pexles.com']
     start_urls = ['https://www.pexels.com/popular-photos/all-time/?page=1']
-    page_index = 1
 
     def parse(self, response):
         src_list = response.xpath("//div[@class='photos']//a[@download]")
