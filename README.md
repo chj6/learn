@@ -48,7 +48,9 @@
   - [https配置](/config/https-config.md)
 
 - 工具类
-  - [linux命令](/tools/linux-like-command.md)
+  - linux
+    - [linux简单命令](/tools/linux/linux-base-command.md)
+    - [linux添加硬盘](/tools/linux/linux-add-disk.md)
   - [ssh免密登陆](/tools/ssh-login.md)
   - [vscode](/tools/vs-code.md)
   - [git](/tools/git.md)
