@@ -33,7 +33,9 @@ def get_html(url):
             ajax_count = 9999
         except Exception as e:
             ajax_count += 1
-            print('请求{}失败，正在尝试再次请求！错误信息：{e}'.format(url, str(e)))
+            # 如果一直出现HTTP Error 503: Service Temporarily Unavailable。
+            # 浏览器中打开当前页面然后获取详细的请求头然后设置到headers中去。
+            print('请求{}失败，正在尝试再次请求！错误信息：{}'.format(url, str(e)))
     return html
 
 
