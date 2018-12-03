@@ -15,6 +15,8 @@
 
 - 服务器文件复制到本地：`scp -r root@192.168.1.100:/data/ /Users/sam/test`。**如果是文件夹复制一定要加`-r`，文件可以不加**
 
+- 查看当前目录的文件个数：`ls -l |grep "^-"|wc -l`
+
 - 软件安装相关命令
     - yum（Yellow dog Updater,Modified）命令：`yum install nginx`这样就装好nginx了。*基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。*
     - rpm（The RPM Package Manager）是在Linux下广泛使用的软件包管理器。最早由Red Hat研制，现在也由开源社区开发。RPM仅适用于安装用RPM来打包的软件。`rpm -ivh nginx-release.rpm`，ivh（按路径安装并显示进度）：i（install）,v（verbose：安装路径）,h（hash：显示进度）
