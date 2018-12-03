@@ -5,6 +5,10 @@ nginx 配置说明：
   具体的文件路径：nginx-版本号\conf\nginx.conf（windows）  
   [日志格式参考链接](https://docs.nginx.com/nginx/admin-guide/monitoring/logging/)
 
+常用命令：   
+- 查看配置文件路径`nginx -t`
+- 启动nginx时指定配置路径`nginx -c /your/path/nginx.conf`，前提是，需要先停止`nginx -s stop` 
+
 ```
 # 开发环境配置接口转发，静态服务器
 http {
