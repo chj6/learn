@@ -14,7 +14,7 @@
 - 本地文件复制到服务器：`scp -r /Users/sam/floder/ root@192.168.1.100:data/`。**如果是文件夹复制一定要加`-r`，文件可以不加**。   
   `/floder/`：将floder文件夹复制到data中；  
   `/floder/*`：将floder文件夹中的文件和子文件夹复制到data中；    
-  `root@192.168.1.100:data/`：复制到root用户的data文件夹下；
+  `root@192.168.1.100:data/`：复制到root用户的data文件夹下；    
   `root@192.168.1.100:/data/`：复制到服务器根目标的data文件夹下；
 
 - 服务器文件复制到本地：`scp -r root@192.168.1.100:/data/ /Users/sam/test`。**如果是文件夹复制一定要加`-r`，文件可以不加**
