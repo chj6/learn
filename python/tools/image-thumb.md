@@ -29,6 +29,7 @@ for image_file in glob.glob(source_image_path):
 
 print(f"success end")
 
+# 多进程处理
 # 创建Process Pool，默认为电脑的每个CPU创建一个
 # with concurrent.futures.ProcessPoolExecutor() as executor:
 #     # 获取需要处理的文件列表
