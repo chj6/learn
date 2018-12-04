@@ -11,7 +11,11 @@
 
 - 在终端中退出文件编辑时，需要先按`ESC`，然后在运行`:wq`保存并推出；
 
-- 本地文件复制到服务器：`scp -r /Users/sam/floder-or-file root@192.168.1.100:data/`。**如果是文件夹复制一定要加`-r`，文件可以不加**
+- 本地文件复制到服务器：`scp -r /Users/sam/floder/ root@192.168.1.100:data/`。**如果是文件夹复制一定要加`-r`，文件可以不加**。   
+  `/floder/`：将floder文件夹复制到data中；  
+  `/floder/*`：将floder文件夹中的文件和子文件夹复制到data中；    
+  `root@192.168.1.100:data/`：复制到root用户的data文件夹下；
+  `root@192.168.1.100:/data/`：复制到服务器根目标的data文件夹下；
 
 - 服务器文件复制到本地：`scp -r root@192.168.1.100:/data/ /Users/sam/test`。**如果是文件夹复制一定要加`-r`，文件可以不加**
 
@@ -20,6 +24,12 @@
 - 移动`/root/images`中的所有文件到当前文件夹中：`mv /root/images/* .`
 
 - 查看当前文件夹大小：`du -h`
+
+- 后台运行脚本：`nohup python3 thumb-create.py &`
+
+- 查看后台运行的程序：`ps -ef | grep thumb-create.py`，可以查找到上面运行的`nohup python3 thumb-create.py`
+
+- 杀掉运行的程序：需要先根据`ps -ef | grep thumb-create.py`查找到的PID，然后运行`kill -9 PID-Value`
 
 - 软件安装相关命令
     - yum（Yellow dog Updater,Modified）命令：`yum install nginx`这样就装好nginx了。*基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。*
