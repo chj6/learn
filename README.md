@@ -39,6 +39,7 @@
     - [txt分割](/python/tools/txt-split.md)
     - [文件夹、文件操作：合并、删除、重命名](/python/tools/floder-file-operation.md)
     - [json存入mysql中](/python/tools/json2mysql.md)
+    - [英文转中文并存入mysql数据库](/python/tools/eng2chs.md)
   - 爬虫
     - [小说抓取](/python/scrapy/biqukan-book-scrapy.md)
     - [小说抓取-多线程版](/python/scrapy/biqukan-book-scrapy-multi-thread.md)
