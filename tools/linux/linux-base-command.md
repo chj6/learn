@@ -21,7 +21,8 @@
 
 - 查看当前目录的文件个数：`ls -l |grep "^-"|wc -l`
 
-- 移动`/root/images`中的所有文件到当前文件夹中：`mv /root/images/* .`
+- 移动`/root/images`中的所有文件到当前文件夹中：`mv /root/images/* .`    
+  `mv sam.txt chj.txt`：将sam.txt重命名成chj.txt，`mv`即可以移动文件也可以重命名文件
 
 - 查看当前文件夹大小：`du -h`
 
