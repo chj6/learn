@@ -7,7 +7,14 @@ nginx 配置说明：
 
 常用命令：   
 - 查看配置文件路径`nginx -t`
-- 启动nginx时指定配置路径`nginx -c /your/path/nginx.conf`，前提是，需要先停止`nginx -s stop` 
+- 启动nginx时指定配置路径`nginx -c /your/path/nginx.conf`，前提是，需要先停止`nginx -s stop`    
+
+注意点： 
+- nginx在linux服务器上，有时会遇到权限问题，提示：**403 Forbidden**，需要设置文件位置的跟目标权限，比如：`chmod 755 /root/website`
+
+个人总结：
+- nginx代理服务器：就是指访问同一个ip时，根据不同的server_name或listen的端口号，去转发到不同的服务器或者目录上去。
+
 
 ```
 # 开发环境配置接口转发，静态服务器
@@ -134,5 +141,3 @@ server{
     }
 }
 ```
-nginx代理服务器：就是指访问同一个ip时，根据不同的server_name或listen的端口号，去转发到不同的服务器或者目录上去。
-
