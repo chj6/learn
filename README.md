@@ -30,6 +30,7 @@
   - [bug记录](/java/bug-record.md)
 
 - python
+  - [基础记录](/python/python-base-record.md)
   - 安装
     - [安装记录-mac](/python/install/install-in-mac.md)
     - [安装记录-centos](/python/install/install-in-centos.md)
