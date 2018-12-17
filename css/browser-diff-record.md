@@ -11,3 +11,5 @@
   <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;"></div>
   ```
   <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;"></div>
+  
+- ios的某些版本上当input处于键盘输入时，页面会变成空白，需要对input的父级元素添加`position:relative;`
