@@ -11,7 +11,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # 输入参数定义
 book_url = 'https://www.biqukan.com/2_2822/'
 book_name = 'xzhdx'
-break_url = ''  # 中断处的url，如果为空，则从头开始爬取
+break_url = ''  # 中断处的url，如果为空，则从头开始爬取 e.g：https://www.biqukan.com/2_2822/001.html
 ajax_repeat_count = 10  # 最大重试次数不能超过9999
 
 
@@ -20,7 +20,7 @@ def get_html(url):
     ajax_count = 0
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/" \
                  "51.0.2704.103 Safari/537.36"
-    headers = {"User-Agent": user_agent} 
+    headers = {"User-Agent": User_Agent,"Host":"www.biqukan.com","Cookie":"UM_distinctid=16711256f5e77-004650a8171952-35677407-1aeaa0-16711256f5f304; bcolor=; font=; size=; fontcolor=; width=; fikker-1DiR-3BAK=SFI2LjLvCXcMSDCK7ZOpU2CXCfQPyjKL; fikker-1DiR-3BAK=SFI2LjLvCXcMSDCK7ZOpU2CXCfQPyjKL; CNZZDATA1260938422=478277051-1542180689-%7C1545020477; fikker-K76k-XYT5=VufyBQfQFCjC8Nn3VUlqHw8CTAfuHMZs; fikker-K76k-XYT5=VufyBQfQFCjC8Nn3VUlqHw8CTAfuHMZss"}
     html = ""
     while ajax_count < ajax_repeat_count:
         try:
@@ -107,3 +107,5 @@ if __name__ == '__main__':
     print(book)
 
 ```
+
+**如果请求一直都是响应503，可以用浏览器打开一下当前网站，然后复制一下cookie**
