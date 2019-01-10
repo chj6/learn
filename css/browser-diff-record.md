@@ -13,3 +13,7 @@
   <div style="box-shadow:0 1px 0 0 red;height:100px;width:100px;background:#ccc;"></div>
   
 - ios的某些版本上当input处于键盘输入时，页面会变成空白，需要对input的父级元素添加`position:relative;`
+
+- ie中的图片要设置width、height，不然会导致图片拉伸，因为IE会自动设置width、height
+
+- ios的date格式：2000/1/1（必须要用这个格式），如果用2000-1-1用new Date()，无法初始化
