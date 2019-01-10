@@ -28,6 +28,8 @@
 
 - java
   - [bug记录](/java/bug-record.md)
+  - [mac-tomcat记录](/java/mac-tomcat.md)
+  - [idea自动更新设置](/java/idea-auto-update.md)
 
 - python
   - [基础记录](/python/python-base-record.md)
