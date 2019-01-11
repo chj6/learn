@@ -2,25 +2,33 @@
 <html lang="{{ site.lang | default: "zh-CN" }}">
 <head>
    <meta charset="UTF-8">
-   
-   {% seo %}
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="theme-color" content="#157878">
    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+   
+   <style>
+      .page-header{
+         background:url({{ site.header_image_url }}) no-repeat;
+         background-size:cover;
+      }
+   </style>
+   {% if site.baidu_analytics %}
    <script>
      var _hmt = _hmt || [];
      (function() {
        var hm = document.createElement("script");
-       hm.src = "https://hm.baidu.com/hm.js?321651f786c3f1ed14b2ad3b263404b7";
+       hm.src = "https://hm.baidu.com/hm.js?{{ site.baidu_analytics }}";
        var s = document.getElementsByTagName("script")[0];
        s.parentNode.insertBefore(hm, s);
      })();
    </script>
+   {% endif %}
 </head>
 <body>
 <header class="page-header" role="banner">
-   <h1 class="project-name">{{ site.title | default: site.github.repository_name }}-chj</h1>
+   <!--{{ site.title | default: site.github.repository_name }}- -->
+   <h1 class="project-name">Learn</h1>
    <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
    {% if site.github.is_project_page %}
    <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
