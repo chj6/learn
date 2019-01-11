@@ -39,3 +39,29 @@
      border-radius: 4px;
   }
 ```
+----
+#### css实现滚动进度条
+注意：当body中有背景图时，会覆盖住顶部显示的进度条，可以通过设置body的padding-top预留好顶部位置来避免这个问题。    
+`background-image: linear-gradient(to right top, yellow 50%, blue 50%);`效果图如下（留意黄蓝的位置）：
+![liner-gradient](image-center/linear-gradient.jpg)
+
+```css
+body{
+ /* 设置背景颜色从左上角到右下角的对角方向，第一个颜色是开始颜色，第二个是结束颜色，后面百分比是渐变位置 */
+ background-image: linear-gradient(to right top, yellow 50%, blue 50%);
+ /* 加上滚动条的高度 */
+ background-size:100% calc(100% - 100vh + 5px);
+ background-repeat: no-repeat;
+}
+
+body::after {
+ content: "";
+ position: fixed;
+ top: 5px;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ background: #fff;
+ z-index: -1;
+}
+```

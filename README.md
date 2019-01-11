@@ -1,6 +1,6 @@
-# Learn
+# 学习记录
 
-  Demo：http://chenhongjun.cn
+  URL：http://www.chenhongjun.cn
 
 - 组件
   - [模态框组件](/components/Modal/example.html)
@@ -47,6 +47,9 @@
     - [小说抓取](/python/scrapy/biqukan-book-scrapy.md)
     - [小说抓取-多线程版](/python/scrapy/biqukan-book-scrapy-multi-thread.md)
     - [pexels流行图片抓取-scrapy版](/python/scrapy/pexels-popular-photos-scrapy.md)
+
+- 算法
+  - [斐波那契](/algorithm/fibonacci.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
