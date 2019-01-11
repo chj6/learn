@@ -8,6 +8,25 @@
    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
    
    <style>
+      /* 滚动进度条 */
+      body{
+         background-image: linear-gradient(to right top, #ffe500 50%, #fdfdfd 50%);
+         background-size:100% calc(100% - 100vh + 5px);
+         background-repeat: no-repeat;
+      }
+      
+      body::after {
+         content: "";
+         position: fixed;
+         top: 5px;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         background: #fff;
+         z-index: -1;
+      }
+      
+      /* 页面头部背景图 */
       .page-header{
          background:url({{ site.header_image_url }}) no-repeat;
          background-size:cover;
@@ -31,7 +50,7 @@
    <h1 class="project-name">Learn</h1>
    <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
    {% if site.github.is_project_page %}
-   <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+   <!--<a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>-->
    {% endif %}
    {% if site.show_downloads %}
    <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
