@@ -3,6 +3,7 @@
 在数学上，斐波纳契数列以如下被以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2) (n>=3，n∈N*)
 
 - 递归实现
+
 ```javascript
 function fibo(n){
   if(n<=1){
@@ -15,6 +16,7 @@ function fibo(n){
 总结：实现简洁明了，但是时间复杂度几乎是指数级的上涨，n数值大一点，就会导致栈溢出，因为每次fibo计算的结果都没有进行缓存，这样会导致在计算fibo(n)时，n之前的都会进行计算。
 
 - 递归实现（优化：缓存已计算的结果）
+
 ```javascript
 function fibo(n,array_cache){
   if(n<=2){
@@ -30,6 +32,7 @@ function fibo(n,array_cache){
 总结：效率可以，时间复杂度为O(n)。避免了重复进行计算，但是逻辑依旧是有点复杂，不简洁
 
 - 循环实现
+
 ```javascript
 function fibo(n){
   if(n<=2){
@@ -49,10 +52,11 @@ function fibo(n){
 总结：效率可以，时间复杂度为O(n)。
 
 - 通项公式解法
+     
 ![通项公司](images/fibonacci.png)
 ```javascript
 function fibo(n){ 
-  // 利用公司来计算，但是要注意js里面的小数点，所以要用toFixed进行四舍五入，所以最好返回的是字符串数值
+  // 利用公式来计算，但是要注意js里面的小数点，所以要用toFixed进行四舍五入，所以最好返回的是字符串数值
   return ((Math.pow((1+Math.sqrt(5))/2 , n) - Math.pow((1-Math.sqrt(5))/2 , n))/Math.sqrt(5)).toFixed(0); 
 }
 ```
