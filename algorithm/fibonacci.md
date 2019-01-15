@@ -56,7 +56,8 @@ function fibo(n){
 ![通项公司](images/fibonacci.png)
 ```javascript
 function fibo(n){ 
-  // 利用公式来计算，但是要注意js里面的小数点，所以要用toFixed进行四舍五入，所以最好返回的是字符串数值
+  // 利用公式来计算，但是要注意js里面的小数点
+  // 所以要用toFixed进行四舍五入，注意toFixed之后返回的是字符串
   return ((Math.pow((1+Math.sqrt(5))/2 , n) - Math.pow((1-Math.sqrt(5))/2 , n))/Math.sqrt(5)).toFixed(0); 
 }
 ```
