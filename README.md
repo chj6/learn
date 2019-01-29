@@ -16,10 +16,12 @@
   - [图片居中](/css/image-center/image-center.html)
 
 - js
-  - [gulp记录](/js/gulp-record.md)  
+  - 知识点
+    - [http相关](/js/knowledge/http.md)
   - Vue
     - [Vue基础记录](/js/vue/vue-base-record.md) 
     - [Vue百度统计](/js/vue/vue-baidu-tongji.md)
+  - [gulp记录](/js/gulp-record.md)  
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
