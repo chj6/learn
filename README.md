@@ -1,6 +1,9 @@
 # 学习记录
 
   URL：http://www.chenhongjun.cn
+  
+- 在线工具
+  - [身份证生成](/online-tools/sfz.html)
 
 - 组件
   - [模态框组件](/components/Modal/example.html)
@@ -18,6 +21,7 @@
 - js
   - 知识点
     - [http相关](/js/knowledge/http.md)
+    - [event相关](/js/knowledge/event.md)
   - Vue
     - [Vue基础记录](/js/vue/vue-base-record.md) 
     - [Vue百度统计](/js/vue/vue-baidu-tongji.md)
@@ -57,14 +61,14 @@
   - [nginx配置](/config/nginx-config.md)
   - [https配置](/config/https-config.md)
 
-- 工具类
+- 开发工具
   - linux
-    - [linux简单命令](/tools/linux/linux-base-command.md)
-    - [linux添加硬盘](/tools/linux/linux-add-disk.md)
-  - [ssh免密登陆](/tools/ssh-login.md)
-  - [vscode](/tools/vs-code.md)
-  - [git](/tools/git.md)
+    - [linux简单命令](/ide-tools/linux/linux-base-command.md)
+    - [linux添加硬盘](/ide-tools/linux/linux-add-disk.md)
+  - [ssh免密登陆](/ide-tools/ssh-login.md)
+  - [vscode](/ide-tools/vs-code.md)
+  - [git](/ide-tools/git.md)
   - mysql
-    - [安装记录](/tools/mysql/install.md)
+    - [安装记录](/ide-tools/mysql/install.md)
 
 - [链接地址](/links/links.md)

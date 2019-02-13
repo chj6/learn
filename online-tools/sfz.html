@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height:100%">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>身份证生成</title>
+   <style>
+      .main {
+         width: 80%;
+         margin: 0 auto;
+      }
+      
+      .main h2 {
+         text-align: center;
+      }
+      
+      .main input[type=text], .main input[type=number] {
+         width: 50px;
+      }
+      
+      .row {
+         padding: 5px 0;
+      }
+      
+      #btn_generate {
+         display: inline-block;
+         width: 80px;
+         height: 30px;
+         line-height: 30px;
+         border:none;
+         font-size: 16px;
+         background:#4daef3;
+         color:#fff;
+         padding:0;
+      }
+      
+      #sfz_list {
+         padding-top: 20px;
+      }
+      
+      .sfz-intro {
+         margin-top: 50px;
+         font-size: 14px;
+         border: solid 1px #ccc;
+         background: #fdfbfb;
+      }
+   </style>
+</head>
+
+
+<body>
+
+<div class="main">
+   <h2>生成测试号码</h2>
+   <div class="row">
+      地&nbsp;址&nbsp;码&nbsp;：<input type=text id="txt_address_code" value="110101">&nbsp;&nbsp;
+   </div>
+   <div class="row">
+      出&nbsp;生&nbsp;年&nbsp;：<input type=text id="txt_year" value="1990">&nbsp;&nbsp;
+      月：<input type=text id="txt_month" value="01">&nbsp;&nbsp;
+      日：<input type=text id="txt_day" value="01">
+   </div>
+   <div class="row">
+      性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;：<input type=radio id="radio_male" name="sex" value="1" checked>男&nbsp;&nbsp;
+      <input type=radio id="radio_female" name="sex" value="0">女
+   </div>
+   <div class="row">
+      生成个数：<input type="number" id="txt_generate_count" value="1">&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type=button id="btn_generate" value="生成">
+   </div>
+  
+   <div id="sfz_list"></div>
+   
+   <div class="sfz-intro">
+      <div>结构简介</div>
+      <div>1．号码的结构</div>
+      <div>公民身份号码是特征组合码，由十七位数字本体码和一位校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。</div>
+      <div>2．地址码</div>
+      <div>表示编码对象常住户口所在县（县级市、旗、区）的行政区划代码，按GB/T2260的规定执行。</div>
+      <div>3．出生日期码</div>
+      <div>表示编码对象出生的年、月、日，按GB/T7408的规定执行，年、月、日代码之间不用分隔符。</div>
+      <div>4．顺序码</div>
+      <div>表示在同一地址码所标识的区域范围内，对同年、同月、同日出生的人编定的顺序号，顺序码的奇数分配给男性，偶数分配给女性。</div>
+      <div>5．校验码</div>
+      <div>根据前面十七位数字码，按照ISO 7064:1983.MOD 11-2校验码计算出来的检验码。</div>
+      <div>身份证号码1到17位乘以对应的系数，然后除以11，用得到的余数值获取对应的数值然后与第18位相比是否一致</div>
+      参考地址：<a href="https://baike.baidu.com/item/居民身份证号码" target=_blank>链接</a>
+   </div>
+</div>
+</body>
+
+<script src="cityinfo.js"></script>
+
+<script>
+  
+  var btn_generate = document.querySelector('#btn_generate');
+  var txt_address_code = document.querySelector('#txt_address_code');
+  var txt_year = document.querySelector('#txt_year');
+  var txt_month = document.querySelector('#txt_month');
+  var txt_day = document.querySelector('#txt_day');
+  var txt_generate_count = document.querySelector('#txt_generate_count');
+  var radio_male = document.querySelector('#radio_male');
+  var sfz_list = document.querySelector('#sfz_list');
+  
+  btn_generate.addEventListener('click', function () {
+    generateSFZ();
+  });
+  
+  function generateSFZ() {
+    // 所在区域对应的身份证号码开头值
+    var cityid = txt_address_code.value;
+    // 身份证号码1到17位分别相乘的系数
+    var baseArray = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+    // 1到17位相乘之后，并除以11，得到的余数值
+    var reArray = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+    // 顺序码:男
+    var strArray1 = new Array(1, 3, 5, 7);
+    // 顺序码:女
+    var strArray2 = new Array(2, 4, 6, 8);
+    var resultArray = [];
+    
+    var years = txt_year.value,
+        months = txt_month.value,
+        days = txt_day.value,
+        generate_count = txt_generate_count.value;
+    
+    var sex = (radio_male.checked) ? 1 : 0;
+    
+    var str = String(cityid) + String(years) + String(months) + String(days);
+    
+    var str1 = '',
+        str2 = '',
+        str3,
+        result,
+        isok;
+    
+    var m;
+    for (m = 0; m < generate_count;) {
+      str3 = '';
+      str1 = String(parseInt(Math.random() * 3)) + String(parseInt(Math.random() * 10));
+      if (sex == 1) {
+        str2 = String(strArray1[parseInt(Math.random() * 4)]);
+      }
+      else {
+        str2 = String(strArray2[parseInt(Math.random() * 4)]);
+      }
+      str3 = str + str1 + str2;
+      result = 0;
+      for (var i = 0; i < 17; i++) {
+        result = result + parseInt(str3.substr(i, 1)) * baseArray[i];
+      }
+      result %= 11;
+      str3 = str3 + reArray[result];
+      isok = 1;
+      for (var k = 0; k < resultArray.length; k++) {
+        if (resultArray[k] == str3) {
+          isok = 0;
+          break;
+        }
+      }
+      if (isok) {
+        resultArray[m] = str3;
+        m++;
+      }
+    }
+    
+    var rst = '';
+    for (var i = 0; i < resultArray.length; i++) {
+      rst += '<div>' + resultArray[i] + '</div>';
+    }
+    sfz_list.innerHTML = rst;
+  }
+  
+  window.onload = function () {
+    generateSFZ();
+  };
+
+</script>
+
+</html>
