@@ -17,6 +17,7 @@
   - [伪类和伪元素](/css/pseudo-classes-elements.md)
   - [css兼容性记录](/css/browser-diff-record.md)
   - [图片居中](/css/image-center/image-center.html)
+  - [常用选择器](/css/css-selector.md)
 
 - js
   - 知识点
