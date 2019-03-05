@@ -32,6 +32,7 @@
   - [Video在safari无法播放的记录](/js/video-safari-record.md)
   - [网页在平板上面的缩放](/js/page-in-pad-scale.md)
   - [sessionStorage共享问题](/js/sessionstorage-share.md)
+  - [webpack中的require用法记录](/js/webpack-require.md)
 
 - java
   - [bug记录](/java/bug-record.md)
