@@ -18,6 +18,7 @@
   - [css兼容性记录](/css/browser-diff-record.md)
   - [图片居中](/css/image-center/image-center.html)
   - [常用选择器](/css/css-selector.md)
+  - [动画记录](/css/transition-transform-animate-record.md)
 
 - js
   - 知识点
