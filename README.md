@@ -27,6 +27,7 @@
   - Vue
     - [Vue基础记录](/js/vue/vue-base-record.md) 
     - [Vue百度统计](/js/vue/vue-baidu-tongji.md)
+    - [Vue-Nginx部署配置](/js/vue/vue-nginx-deploy.md)
   - [gulp记录](/js/gulp-record.md)  
   - [fix元素跟随滚动](/js/fix-scroll.md)
   - [动态生产rjs的配置文件](/js/dynamic-require-build-js.md)
