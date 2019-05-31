@@ -19,6 +19,8 @@
 
 - 服务器文件复制到本地：`scp -r root@192.168.1.100:/data/ /Users/sam/test`。**如果是文件夹复制一定要加`-r`，文件可以不加**`（如果遇到mv,scp,cp时操作的文件过多，会提示参数过长）`
 
+- sftp复制文件：先链接到服务器` sftp root@192.168.1.100 `，上传文件：`put /path/file本地文件 /path/file远程服务器目录`，下载：`get /path/file远程服务器目录 /path/file本地文件`
+
 - 查看当前目录的文件个数：`ls -l |grep "^-"|wc -l`
 
 - 移动`/root/images`中的所有文件到当前文件夹中：`mv /root/images/* .`    
