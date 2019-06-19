@@ -29,6 +29,7 @@ function test(n) {
 
 - **筛选法**
 ```javascript
+
 function test2(n) {
     var count = 0;
     if (n < 2) {
