@@ -65,3 +65,5 @@ body::after {
  z-index: -1;
 }
 ```
+---
+### 当元素的display设置为flex后，子元素的float属性会失效

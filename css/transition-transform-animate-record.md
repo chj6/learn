@@ -1,7 +1,7 @@
 # 动画记录
 - transition（翻译：过渡）突出的是过渡的效果；
-- transform（翻译：改变）突出的改变之后的结果；
-- animation（翻译：动画）突出的整个动画的过程，功能也最强大；
+- transform（翻译：改变）突出的改变之后的结果，一般都需要配合transition一起使用，来达到动画效果；
+- animation（翻译：动画）突出的整个动画的过程，功能也最强大，并且在@keyframes中还可以使用transition和transform；
 
 ## transition
 `transition`：是一个简写属性，用于transition-property（过渡属性），transition-duration（过渡时间），transition-timing-function（执行的时间曲线）、transition-delay（延迟执行时间）。用于在一个元素的不同的状态之间切换的时候定义不同的效果。
