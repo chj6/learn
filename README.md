@@ -60,6 +60,7 @@
 
 - 算法
   - [斐波那契](/algorithm/fibonacci.md)
+  - [素数个数求解](/algorithm/primenumber.md)
 
 - 配置
   - [nginx配置](/config/nginx-config.md)
