@@ -57,5 +57,5 @@ function test2(n) {
   var rst = test2();
   console.log((new Date()) - dt_start, '运行时间ms');
   console.log(rst, '素数个数');
-
 ```
+
