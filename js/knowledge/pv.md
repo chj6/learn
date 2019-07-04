@@ -827,13 +827,27 @@ Cat.prototype.constructor = Cat; // 需要修复下构造函数
 
 参考：https://www.cnblogs.com/humin/p/4556820.html
 
+## DOM中的attribute(特性)、property(属性)
+`<div id='test' class='test' style='display:none;'></div>`   
+`var dom = document.querySelector('#test')`
+- attribute   
+dom标签元素内的所有定义都是attribute特性，取值方法`dom.getAttribute('id')`
 
-## 一个项目，做了哪些优化？
+- property   
+上述中的dom本质是一个js对象，可以直接操作dom的属性，取值方法`dom.id`，获取到的值和使用attribute获取的一致（前提是非自定义的dom特性，比如：id，class(js中是className)，style（js中style需要通过style.display来获取）等），如果是自定义的特性，则以分别设置的值为准
 
-## 会的技术有哪些
+```javascript
+// 自定义attribute设置
+dom.setAttribute("test","1");
+dom.test = "2";
 
-## 看过哪些书
+dom.getAttribute("test"); // 1
+dom.test; // 2
 
-## 自我介绍，为何选择前端
+// 原生的attribute设置
+dom.id = "test2";
+dom.getAttribute("id"); // test2
+```
 
-## 未来规划
+使用javascript操作property更为方便、快捷，property支持各种不同的类型，并且对于布尔类型的attribute会进行自动转化，如：checked、disabled、selected等；   
+MDN上ELement的attributes是属于property下面的一个属性；
