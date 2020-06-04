@@ -41,7 +41,7 @@ function method1(e){
 function method2(e){
   console.loog("method2");
 }
-```
+``` 
 
 ## 事件绑定addEventListener、attachEvent
 **addEventListener(type, listener[, options])：**   
