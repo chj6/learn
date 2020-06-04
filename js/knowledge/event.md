@@ -15,6 +15,7 @@ JS 执行是单线程的，它是基于事件循环的。事件循环大致分�
 - 浏览器检查实际点击的元素是否在冒泡阶段注册了一个onclick事件处理程序，如果是则运行onclick的事件
 - 然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达<html>元素    
 `e.preventDefault()`：阻止默认行为，比如在表单校验时：
+
 ```javascript
 form.submit = function(e) {
   if( name ==='' ){
@@ -23,7 +24,8 @@ form.submit = function(e) {
   }
 }
 ```
-`e.stopPropagation()`：停止冒泡，它只会让当前事件处理程序运行，但事件不会在冒泡链上进一步扩大，因此将不会有更多事件处理器被运行(不会向上冒泡)。
+`e.stopPropagation()`：停止冒泡，它只会让当前事件处理程序运行，但事件不会在冒泡链上进一步扩大，因此将不会有更多事件处理器被运行(不会向上冒泡)。 
+
 ```javascript
 // 此时只会执行method1、method2，因为div是冒泡链的上一层
 var btn = document.getElementById("btn_id");
@@ -41,8 +43,9 @@ function method1(e){
 function method2(e){
   console.loog("method2");
 }
-``` 
-
+```
+ 
+ 
 ## 事件绑定addEventListener、attachEvent
 **addEventListener(type, listener[, options])：**   
 *注意：那些不支持参数options的浏览器，会把第三个参数默认为useCapture，即设置useCapture为true*    
