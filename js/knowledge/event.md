@@ -43,7 +43,6 @@ function method2(e){
 }
 ```
 
-
 ## 事件绑定addEventListener、attachEvent
 **addEventListener(type, listener[, options])：**   
 *注意：那些不支持参数options的浏览器，会把第三个参数默认为useCapture，即设置useCapture为true*    
