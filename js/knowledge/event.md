@@ -98,11 +98,14 @@ btn.addEventListener("click", method3);
 // 执行顺序：div_method2 -> method1 -> method2 -> div_method1
 var btn_parent_div = document.getElementById("btn_parent_div_id");
 btn_parent_div.addEventListener("click", div_method1);
-btn_parent_div.addEventListener("click", div_method2, { capture: true }); // 表明在div_method2事件在捕获阶段就会被触发，默认是在冒泡时才会触发事件
+
+// 表明在div_method2事件在捕获阶段就会被触发，默认是在冒泡时才会触发事件
+btn_parent_div.addEventListener("click", div_method2, { capture: true }); 
 btn.addEventListener("click", method1);
 btn.addEventListener("click", method2);
 ```
-
+ 
+ 
 ## oninput，onchange，onpropertychange区别
 1、onchange 事件与 onpropertychange 事件的区别：
 - onchange 事件在内容改变（两次内容如果相同，则不会触发change）且失去焦点时触发。
