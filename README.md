@@ -35,6 +35,8 @@
   - [网页在平板上面的缩放](/js/page-in-pad-scale.md)
   - [sessionStorage共享问题](/js/sessionstorage-share.md)
   - [webpack中的require用法记录](/js/webpack-require.md)
+  - [curry柯里化](/js/curry.html)
+  - [Promise实现](/js/promise.html)
 
 - java
   - [bug记录](/java/bug-record.md)
