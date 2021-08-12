@@ -5,12 +5,16 @@
 - 在线工具
   - [身份证生成](/online-tools/sfz.html)
 
-- 组件
+- 组件（js/jquery）
   - [模态框组件](/components/Modal/example.html)
     - [ms模态框：整个模态框滚动](/components/Modal/ms-example.html)
   - [布局整理](/components/Layout/example.html)
   - [树形菜单](/components/TreeMenu/example.html)
   - [分页插件](/components/Paging/example.html)
+  
+- 组件（react）
+  - [PDF在线预览](/components/Pdf/view.md)
+  - [网页导出PDF](/components/Pdf/html2pdf.md)
 
 - css基础知识
   - [知识点记录](/css/knowledge-point-record.md)
